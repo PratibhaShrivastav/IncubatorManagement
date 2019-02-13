@@ -1,5 +1,5 @@
 from django.db import models
-# Create your models here.
+from startups.models import Startup
 
 class Event(models.Model):
 
@@ -16,7 +16,7 @@ class Event(models.Model):
         (2,'Not Interested'),
     )
 
-    #startup = models.ForeignKey('',related_name='event', on_delete=models.CASCADE)
+    startup = models.ForeignKey(Startup,related_name='event', null=True, blank=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     description = models.TextField()
     start_date = models.DateField(auto_now=False)
