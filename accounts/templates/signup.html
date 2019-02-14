@@ -1,5 +1,14 @@
-<form method="POST">
-{% csrf_token %}
-{{form.as_p}}
-<input type="submit" value="Signup">
-</form>
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{form.errors}}
+        Username :<input type="text" name="username" /><br>
+        First Name :<input type="text" name="first_name" /><br>
+        Last Name :<input type="text" name="last_name" /><br>
+        Password :<input type="password" name="password1" /><br>
+        Confirm Password :<input type="password" name="password2" /><br>
+        <input type="submit" value="Signup">
+    </form>
+{% endblock %}
