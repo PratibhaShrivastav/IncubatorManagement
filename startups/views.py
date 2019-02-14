@@ -15,5 +15,5 @@ class Startup_Log(CreateView):
         log = form.save(commit=False)
         log.startup = self.request.user.profile.startup
         log.save()
-        return super.form_valid(self,form)
+        return super.form_valid(form)
 
