@@ -9,10 +9,16 @@ class Profile(models.Model):
     mentor = models.BooleanField(default=False)
     
     def get_full_name(self):
-        return self.first_name + ' ' + self.last_name
+        return self.user.first_name + ' ' + self.user.last_name
 
     def get_short_name(self):
-        return self.first_name
+        return self.user.first_name
 
     def __str__(self):
-        return self.email
+        return self.user_email
+
+class Coffee(models.Model):
+    user = models.ForeignKey(User, related_name='coffee', on_delete=models.CASCADE)
+    free_coffee = models.IntegerField()
+    extra_coffee = models.IntegerField()
+    date = models.DateField(auto_now=True)
