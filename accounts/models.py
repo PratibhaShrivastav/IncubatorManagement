@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from startups.models import Startup
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    startup = models.ForeignKey(Startup,related_name='startup',null=True,blank=True,on_delete=models.CASCADE,default=2)
+    user = models.ForeignKey(User, related_name='profile', on_delete=models.CASCADE)
+    startup = models.ForeignKey(Startup,related_name='startup',null=True,blank=True,on_delete=models.CASCADE)
     user_email = models.EmailField(unique = True)
     date_joined = models.DateTimeField(auto_now=True)
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)

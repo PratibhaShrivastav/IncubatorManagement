@@ -3,12 +3,14 @@ from django.contrib.auth.models import User
 from django.views.generic import CreateView
 from .forms import UserForm
 from django.urls import reverse_lazy
-from .models import Profile
+from .models import Profile as Profile
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate
 from django.core import serializers
 from django.forms.models import model_to_dict
+from django.views.decorators.csrf import csrf_exempt
+
 
 class SignUp(CreateView):
     model = User
@@ -18,28 +20,45 @@ class SignUp(CreateView):
 
     def form_valid(self, form):
         user = form.save(commit = False)
-        user.is_active = 0
-        super().form_valid(self, form)
+        user.is_active = 1
+        user.save()
+        return super().form_valid(form)
 
-class Profile(CreateView):
+class CreateProfile(CreateView):
     model = Profile
-    template_name = 'profile.html'
-    success_url = reverse_lazy('accounts:profile')
+    template_name = 'create_profile.html'
+    success_url = reverse_lazy('accounts:dashboard')
+    fields = ('user_email',)
+
+    def form_valid(self, form):
+        profile = form.save(commit=False)
+        profile.user = self.request.user
+        return super().form_valid( form)
+
 
 def logout(request):
     auth_logout(request)
     return HttpResponseRedirect(reverse('accounts:login'))
 
+@csrf_exempt
 def login(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        username = request.POST['username']
+        password = request.POST['password']
+        
         user = authenticate(username=username, password=password)
         if user:
-            if user.is_active:
+            auth_login(request, user)
+            if Profile.objects.filter(user=request.user).count() == 0:
+                return HttpResponseRedirect(reverse('accounts:create-profile'))
+            else:
+                return HttpResponseRedirect(reverse('accounts:dashboard'))
+                
+            if not user.profile.id == None:
                 auth_login(request, user)
                 return HttpResponseRedirect(reverse('accounts:dashboard'))
             else:
+                auth_login(request, user)
                 return HttpResponseRedirect(reverse('accounts:create-profile'))
     return render(request, 'login.html')
 

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import SignUp, login, logout, dashboard
+from .views import SignUp, login, logout, dashboard, CreateProfile
 from django.contrib.auth import views as auth_views
 
 app_name = 'accounts'
@@ -10,4 +10,5 @@ urlpatterns = [
     path('login/',login ,name='login'),
     path('logout/',logout ,name='logout'),
     path('dashboard/',dashboard, name='dashboard'),
+    path('profile/', CreateProfile.as_view(), name='create-profile')
 ]
