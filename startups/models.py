@@ -1,7 +1,8 @@
 from django.db import models
+from django.http import HttpResponse
 
 class Startup(models.Model):
-
+    
     name = models.CharField(max_length=50)
     motto = models.CharField(max_length=200)
     logo = models.ImageField(upload_to='Startup' ,null=True,blank=True)
@@ -9,6 +10,7 @@ class Startup(models.Model):
 
     def __str__(self):
         return self.name
+    
 
 class StartupLog(models.Model):
 
