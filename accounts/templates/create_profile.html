@@ -42,6 +42,13 @@
                             <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".6s">
                                 <input type="text" placeholder="Email" class="form-control" name="user_email" id="email">
                             </div>
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".6s">
+                                    <select name="startup" class="form-control">
+                                        {% for startup in startups %}
+                                            <option value={{startup.id}}>{{startup.name}}</option>
+                                        {% endfor %}
+                                    </select>
+                            </div>    
                             <br>
                             <br>
                             <div id="submit" class="wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.4s">
@@ -54,6 +61,9 @@
                             {% endif %}
                                                 
                         </form>
+                        <div class="" style="color:black">
+                        
+                        </div>
                     </div>
                 </div>
             </div>
