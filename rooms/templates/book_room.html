@@ -1,21 +1,65 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 
-{% block content %}
-    Welcome to Room {{room.number}}
-    <hr>
-    <div class="seats-form">
-        <form method="POST">
-            <!--For Outputting Fields-->
-            {% for seat in seats %}
-                Seat No : {{seat.id}}
-                {% if seat.is_issued %}
-                <input type="checkbox" name="seat_{{seat.id}}" checked disabled>
-                {% else %}
-                <input type="checkbox" name="seat_{{seat.id}}">
-                {% endif %}
-                <br>
-            {% endfor %}
-            <input type="submit" value="Book Seats">
-        </form>
-    </div>
+{% block midcontent %}
+ <!-- 
+        ================================================== 
+            Global Page Section Start
+        ================================================== -->
+        <section class="global-page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block">
+                            <h2>BOOK SEATS</h2>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="{% url "home" %}">
+                                        <i class="ion-ios-home"></i>
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="active">Book_Seats</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+<!-- 
+================================================== 
+    Contact Section Start
+================================================== -->
+<section id="contact-section">
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4 center">
+                <div class="block">
+                    <h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Room {{room.number}}</h2>
+                    <div class="seats-form form">
+                        <form method="POST" class="seats-form form">
+                            <!--For Outputting Fields-->
+                            {% for seat in seats %}
+                                <label class="checkbox">    
+                                {% if seat.startup == startup.id and seat.is_issued %}   
+                                    <input type="checkbox" class="form-control" name="seat_{{seat.id}}" checked>{{seat.id}}</label>
+                                {% elif seat.is_issued %}
+                                    <input type="checkbox" class="form-control" name="seat_{{seat.id}}" checked disabled>{{seat.id}}</label>
+                                {% else %}
+                                    <input type="checkbox" class="form-control" name="seat_{{seat.id}}">{{seat.id}}</label>
+                                {% endif %}
+                                <br>
+                            {% endfor %}
+                            <input type="submit" class="form-control" value="Book Seats">
+                        </form>
+                        </div>
+                
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+</section> 
+
 {% endblock %}
