@@ -23,5 +23,6 @@ urlpatterns = [
     path('',Home.as_view(),name='home'),
     path('startups/',include('startups.urls')),
     path('rooms/',include('rooms.urls')),
+    path('events/',include('events.urls')),
 ]
 
