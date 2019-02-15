@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.views.generic import CreateView
 from .forms import UserForm
 from django.urls import reverse_lazy
-from .models import Profile as Profile,Coffee,CoffeeLog
+from .models import Profile as Profile,Coffee,CoffeeLog,Startup
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate
@@ -32,6 +32,17 @@ class CreateProfile(CreateView):
     template_name = 'create_profile.html'
     success_url = reverse_lazy('home')
     fields = ('user_email',)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        startups = Startup.objects.all()
+        
+        startup_list = []
+        for startup in startups:
+            startup_list.append(model_to_dict(startup))
+        
+        context['startups'] = startup_list
+        return context
 
     def form_valid(self, form):
         profile = form.save(commit=False)
@@ -88,22 +99,32 @@ def get_coffee(request):
     coffee_log.token = token
     coffee_log.user = request.user
     
+    print("free = ",coffee.free_coffee, " | total :",coffee.total_coffee)
     if coffee.total_coffee < coffee.free_coffee:
         free_coffee = True
         coffee_left = coffee.free_coffee - coffee.total_coffee
+        amount_due = 0
     else:
         free_coffee = False
+        coffee_extra = coffee.total_coffee - coffee.free_coffee
+        coffee.amount_due = coffee_extra*15
+        amount_due = coffee.amount_due
+        coffee.save()
         coffee_left = 0
     
     coffee_log.save()
-    return render(request,'getcoffee.html',context={'token':coffee_log.token,'free':free_coffee,'left':coffee_left,'amount_due':0})
+    return render(request,'getcoffee.html',context={'token':coffee_log.token,'free':free_coffee,'left':coffee_left,'amount_due':amount_due})
 
+@csrf_exempt
 @login_required
 def verify_coffee(request):
-    token = request.POST.get('token')
-    if CoffeeLog.objects.filter(token=token).count()==0:
-        return render(request,'getcoffee.html',context={'token':False})
-    return render(request,'getcoffee.html',context={'token':True})    
+    if request.method == "POST":
+        token = request.POST.get('token')
+        if CoffeeLog.objects.filter(token=token).count()==0:
+            return render(request,'verify_coffee.html',context={'token':False,'sent':2})
+        return render(request,'verify_coffee.html',context={'token':True,'sent':2})
+    else:
+        return render(request,'verify_coffee.html',context={'token':True,'sent':1})
 
 
 def encode(key, clear):

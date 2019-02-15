@@ -24,6 +24,7 @@ class Coffee(models.Model):
     free_coffee = models.IntegerField(default=5)
     total_coffee = models.IntegerField(default=0)
     date = models.DateField(auto_now=True)
+    amount_due = models.IntegerField(default=0)
 
 class CoffeeLog(models.Model):
     token = models.CharField(max_length=50,unique=True)

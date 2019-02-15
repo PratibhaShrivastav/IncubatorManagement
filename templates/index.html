@@ -101,7 +101,11 @@
                                 </div>
                             </li>
                             <li><a href="contact.html">Contact</a></li>
-                             <li><a href="{% url 'accounts:logout' %}"> Logout</a></li>
+                            {% if not request.user.username %}
+                                <li><a href="{% url 'accounts:login' %}"> Login</a></li>
+                            {% else %}
+                                <li><a href="{% url 'accounts:logout' %}"> Logout</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </nav>
