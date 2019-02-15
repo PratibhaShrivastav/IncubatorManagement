@@ -1,0 +1,31 @@
+
+{% extends 'index.html' %}
+{% load static %}
+
+{% block precontent %}
+    <link rel="stylesheet" href="{% static 'css/coffee.css' %}">
+{% endblock %}
+
+{% block midcontent %}
+
+<div class="main">
+  <div class="coffee-cup"> 
+    
+    <div class="cup">
+    </div>
+    <div class="coffee">
+    </div>
+    <div class="heart">
+    </div>
+    
+    <div class="saucer">
+    </div>
+</div>
+<center><div id="coffeetext">
+ <h1> Your coffee token id is {{token}} </h1>
+ <h1> Go grab your coffee </h1></div>
+ </center>
+  </div>
+ 
+<br>
+ {% endblock %}

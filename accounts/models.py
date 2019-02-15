@@ -21,6 +21,14 @@ class Profile(models.Model):
 
 class Coffee(models.Model):
     user = models.ForeignKey(User, related_name='coffee', on_delete=models.CASCADE)
-    free_coffee = models.IntegerField()
-    extra_coffee = models.IntegerField()
+    free_coffee = models.IntegerField(default=5)
+    total_coffee = models.IntegerField(default=0)
     date = models.DateField(auto_now=True)
+
+class CoffeeLog(models.Model):
+    token = models.CharField(max_length=50,unique=True)
+    user = models.ForeignKey(User, related_name='coffee_tokens',on_delete=models.CASCADE)
+    order_complete = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.token
