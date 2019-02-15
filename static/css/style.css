@@ -880,6 +880,11 @@ article {
   -webkit-box-shadow: none;
 }
 
+#new-section {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
 #contact-section textarea {
   display: block;
   border-radius: 0;
