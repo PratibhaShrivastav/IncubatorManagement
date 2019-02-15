@@ -27,7 +27,7 @@ class SignUp(CreateView):
 class CreateProfile(CreateView):
     model = Profile
     template_name = 'create_profile.html'
-    success_url = reverse_lazy('accounts:dashboard')
+    success_url = reverse_lazy('home')
     fields = ('user_email',)
 
     def form_valid(self, form):
@@ -38,7 +38,7 @@ class CreateProfile(CreateView):
 
 def logout(request):
     auth_logout(request)
-    return HttpResponseRedirect(reverse('accounts:login'))
+    return HttpResponseRedirect(reverse('home'))
 
 @csrf_exempt
 def login(request):
@@ -52,11 +52,11 @@ def login(request):
             if Profile.objects.filter(user=request.user).count() == 0:
                 return HttpResponseRedirect(reverse('accounts:create-profile'))
             else:
-                return HttpResponseRedirect(reverse('accounts:dashboard'))
+                return HttpResponseRedirect(reverse('home'))
                 
             if not user.profile.id == None:
                 auth_login(request, user)
-                return HttpResponseRedirect(reverse('accounts:dashboard'))
+                return HttpResponseRedirect(reverse('home'))
             else:
                 auth_login(request, user)
                 return HttpResponseRedirect(reverse('accounts:create-profile'))

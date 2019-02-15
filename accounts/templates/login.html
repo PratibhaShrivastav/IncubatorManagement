@@ -35,7 +35,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
-                    <h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Signin now</h2>
+                   <center> <h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Login now</h2></center>
                     <div class="contact-form">
                         <form method="POST">
                             {% csrf_token %}
@@ -46,9 +46,10 @@
                             <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1s">
                                 <input type="password" placeholder="Password" class="form-control" name="password" id="name">
                             </div>
-
+                            <br>
+                            <br>
                             <div id="submit" class="wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.4s">
-                                <input type="submit" value="Login" class="btn btn-success form-control">
+                                <input type="submit" value="Login" style="background-color:#02bdd5;width:200px;margin:auto;">
                             </div>
                             {% if form.errors %}
                                 {% for error in form.errors %}

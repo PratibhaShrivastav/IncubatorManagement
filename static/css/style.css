@@ -824,8 +824,9 @@ article {
   -webkit-transform-style: preserve-3d;
 }
 
-.subtitle {
-  margin-left: 45%;
+#registerbtn {
+  width: 200px;
+  margin: auto;
 }
 
 #contact-section {
@@ -1345,8 +1346,9 @@ px      68    160    252    */
   .title {
     font-size: 40px;
   }
-  .navbar-header .navbar-brand a {
-    padding: 6px 8px;
+  #brand {
+    margin-bottom: 5px;
+    font-weight: bold;
   }
   #hero-area {
     padding: 140px 0;
