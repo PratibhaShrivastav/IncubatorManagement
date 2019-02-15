@@ -1,7 +1,85 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 
-{% block content %}
-    <form method="POST">
+{% block midcontent %}
+ <!-- 
+        ================================================== 
+            Global Page Section Start
+        ================================================== -->
+        <section class="global-page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block">
+                            <h2>REGISTRATION</h2>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="{% url "home" %}">
+                                        <i class="ion-ios-home"></i>
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="active">Register</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+<!-- 
+================================================== 
+    Contact Section Start
+================================================== -->
+<section id="contact-section">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Register now</h2>
+                    <div class="contact-form">
+                        <form id="contact-form" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".6s">
+                                <input type="text" placeholder="Username" class="form-control" name="username" id="name">
+                            </div>
+                            
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".8s">
+                                <input type="text" placeholder="First name" class="form-control" name="first_name" id="name">
+                            </div>
+                            
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1s">
+                                <input type="text" placeholder="Last name" class="form-control" name="last_name" id="name">
+                            </div>
+                            
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1s">
+                                <input type="password" placeholder="Password" class="form-control" name="password1" id="name">
+                            </div>
+
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1s">
+                                <input type="password" placeholder="Confirm Password" class="form-control" name="password2" id="name">
+                            </div>
+                            
+                            <div id="submit" class="wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.4s">
+                                <input type="submit" value="Signup" class="btn btn-danger">
+                             </div>
+
+                            {% if form.errors %}
+                                {% for error in form.errors %}
+                                    {{error|escape}}
+                                {% endfor %}
+                            {% endif %}
+                                                
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 
+
+{% endblock %}
+
+  <!--  <form method="POST">
         {% csrf_token %}
         {{form.errors}}
         Username :<input type="text" name="username" /><br>
@@ -10,5 +88,4 @@
         Password :<input type="password" name="password1" /><br>
         Confirm Password :<input type="password" name="password2" /><br>
         <input type="submit" value="Signup">
-    </form>
-{% endblock %}
+    </form>-->
