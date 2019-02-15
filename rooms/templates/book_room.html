@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    Welcome to Room {{room.number}}
+    <hr>
+    <div class="seats-form">
+        <form method="POST">
+            <!--For Outputting Fields-->
+            {% for seat in seats %}
+                Seat No : {{seat.id}}
+                {% if seat.is_issued %}
+                <input type="checkbox" name="seat_{{seat.id}}" checked disabled>
+                {% else %}
+                <input type="checkbox" name="seat_{{seat.id}}">
+                {% endif %}
+                <br>
+            {% endfor %}
+            <input type="submit" value="Book Seats">
+        </form>
+    </div>
+{% endblock %}

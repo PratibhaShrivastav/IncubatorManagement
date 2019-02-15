@@ -21,7 +21,7 @@ class Room(models.Model):
 
 class Seat(models.Model):
 
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, related_name='room_seats', on_delete=models.CASCADE)
     startup = models.ForeignKey(Startup, on_delete=models.CASCADE, null=True, blank=True)
     is_issued = models.BooleanField(default=False)
 

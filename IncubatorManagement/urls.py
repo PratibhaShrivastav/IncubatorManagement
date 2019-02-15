@@ -22,5 +22,6 @@ urlpatterns = [
     path('accounts/',include('accounts.urls')),
     path('',Home.as_view(),name='home'),
     path('startups/',include('startups.urls')),
+    path('rooms/',include('rooms.urls')),
 ]
 

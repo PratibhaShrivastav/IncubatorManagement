@@ -3,9 +3,9 @@ from django.views.generic import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import StartupLog
 from django.urls import reverse_lazy
-# Create your views here.
 
-class Startup_Log(CreateView):
+
+class Startup_Log(LoginRequiredMixin, CreateView):
     model = StartupLog
     fields = ('update_title','update_description','photo')
     template_name = 'startup_update.html'
