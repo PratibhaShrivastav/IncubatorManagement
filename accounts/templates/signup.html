@@ -37,7 +37,7 @@
                 <div class="block">
                     <h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Register now</h2>
                     <div class="contact-form">
-                        <form id="contact-form" method="POST">
+                        <form method="POST">
                             {% csrf_token %}
                             <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".6s">
                                 <input type="text" placeholder="Username" class="form-control" name="username" id="name">
@@ -60,12 +60,11 @@
                             </div>
                             
                             <div id="submit" class="wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.4s">
-                                <input type="submit" value="Signup" class="btn btn-danger">
-                             </div>
-
+                                <input type="submit" value="Signup"  class="btn btn-success form-control">
+                            </div>
                             {% if form.errors %}
                                 {% for error in form.errors %}
-                                    {{error|escape}}
+                                    {{error}}
                                 {% endfor %}
                             {% endif %}
                                                 
