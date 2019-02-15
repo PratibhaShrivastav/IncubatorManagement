@@ -21,11 +21,19 @@
     <div class="saucer">
     </div>
 </div>
-<center><div id="coffeetext">
- <h1> Your coffee token id is {{token}} </h1>
+<center><div id="coffeetext" class="center">
+    
+  <h1> Your 
+    {% if free %}
+    Free
+    {% else %}
+    Paid
+    {% endif %}
+    coffee token id is :<br><br>
+   <kbd>{{token}} </kbd></h1>
  <h1> Go grab your coffee </h1></div>
- </center>
-  </div>
+  <h1>Your Pending Amount for Previous Coffees: {{amount_due}} </h1>
+  </div></center>
  
 <br>
  {% endblock %}

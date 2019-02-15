@@ -11,6 +11,8 @@ from django.core import serializers
 from django.forms.models import model_to_dict
 from django.views.decorators.csrf import csrf_exempt
 from datetime import date
+import datetime
+import base64
 
 
 class SignUp(CreateView):
@@ -77,12 +79,46 @@ def get_coffee(request):
     else:
         coffee =  Coffee.objects.get(user=request.user)
     coffee_log = CoffeeLog()
-    toda = date.today()
-    datestring = str(toda.day) + "/" +  str(toda.day) + "/" + str(toda.year) 
+    time = datetime.datetime.now()
+    datestring = str(time)
     coffee.total_coffee = coffee.total_coffee + 1 
     coffee.save()
-    coffee_log.token = str(request.user.username) + str(request.user.coffee.all()[0].total_coffee) + datestring
-    print(coffee_log.token)
+    token = str(request.user.username)+datestring
+    token = encode('COFFEE', token)
+    coffee_log.token = token
     coffee_log.user = request.user
+    
+    if coffee.total_coffee < coffee.free_coffee:
+        free_coffee = True
+        coffee_left = coffee.free_coffee - coffee.total_coffee
+    else:
+        free_coffee = False
+        coffee_left = 0
+    
     coffee_log.save()
-    return render(request,'getcoffee.html',context={'token':coffee_log.token})
+    return render(request,'getcoffee.html',context={'token':coffee_log.token,'free':free_coffee,'left':coffee_left,'amount_due':0})
+
+@login_required
+def verify_coffee(request):
+    token = request.POST.get('token')
+    if CoffeeLog.objects.filter(token=token).count()==0:
+        return render(request,'getcoffee.html',context={'token':False})
+    return render(request,'getcoffee.html',context={'token':True})    
+
+
+def encode(key, clear):
+    enc = []
+    for i in range(len(clear)):
+        key_c = key[i % len(key)]
+        enc_c = chr((ord(clear[i]) + ord(key_c)) % 256)
+        enc.append(enc_c)
+    return base64.urlsafe_b64encode("".join(enc).encode()).decode()
+
+def decode(key, enc):
+    dec = []
+    enc = base64.urlsafe_b64decode(enc).decode()
+    for i in range(len(enc)):
+        key_c = key[i % len(key)]
+        dec_c = chr((256 + ord(enc[i]) - ord(key_c)) % 256)
+        dec.append(dec_c)
+    return "".join(dec)
