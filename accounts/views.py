@@ -3,13 +3,14 @@ from django.contrib.auth.models import User
 from django.views.generic import CreateView
 from .forms import UserForm
 from django.urls import reverse_lazy
-from .models import Profile as Profile
+from .models import Profile as Profile,Coffee,CoffeeLog
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate
 from django.core import serializers
 from django.forms.models import model_to_dict
 from django.views.decorators.csrf import csrf_exempt
+from datetime import date
 
 
 class SignUp(CreateView):
@@ -67,3 +68,21 @@ def dashboard(request):
     user = request.user
     user_dict = model_to_dict(user)
     return render(request, 'dashboard.html', {'user':user_dict})
+
+@login_required
+def get_coffee(request):
+    if Coffee.objects.filter(user=request.user).count() == 0:
+        coffee = Coffee(user=request.user)
+        coffee.save()
+    else:
+        coffee =  Coffee.objects.get(user=request.user)
+    coffee_log = CoffeeLog()
+    toda = date.today()
+    datestring = str(toda.day) + "/" +  str(toda.day) + "/" + str(toda.year) 
+    coffee.total_coffee = coffee.total_coffee + 1 
+    coffee.save()
+    coffee_log.token = str(request.user.username) + str(request.user.coffee.all()[0].total_coffee) + datestring
+    print(coffee_log.token)
+    coffee_log.user = request.user
+    coffee_log.save()
+    return render(request,'getcoffee.html',context={'token':coffee_log.token})
