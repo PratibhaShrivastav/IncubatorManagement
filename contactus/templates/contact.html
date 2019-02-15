@@ -1,0 +1,83 @@
+{% extends 'index.html' %}
+
+{% block midcontent %}
+ <!-- 
+        ================================================== 
+            Global Page Section Start
+        ================================================== -->
+        <section class="global-page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block">
+                            <h2>CONTACT US</h2>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="{% url "home" %}">
+                                        <i class="ion-ios-home"></i>
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="active">CONTACT</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+<!-- 
+================================================== 
+    Contact Section Start
+================================================== -->
+<section id="contact-section">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <center><h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Send Message</h2></center>
+                    <div class="contact-form">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".6s">
+                                <input type="text" placeholder="Name" class="form-control" name="name" id="name">
+                            </div>
+                            
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".8s">
+                                <input type="text" placeholder="Email" class="form-control" name="email" id="name">
+                            </div>
+                            
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.2s">
+                                    <textarea rows="6" placeholder="Message" class="form-control" name="message" id="message"></textarea>    
+                            </div>
+                            
+                            <br>
+                            <div id="submit" class="wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.4s">
+                                <input type="submit" value="Send" class="form-control" style="background-color:#02bdd5;font-weight:bold" id="registerbtn">
+                            </div>
+                            {% if form.errors %}
+                                {% for error in form.errors %}
+                                    {{error}}
+                                {% endfor %}
+                            {% endif %}
+                                                
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 
+
+{% endblock %}
+
+  <!--  <form method="POST">
+        {% csrf_token %}
+        {{form.errors}}
+        Username :<input type="text" name="username" /><br>
+        First Name :<input type="text" name="first_name" /><br>
+        Last Name :<input type="text" name="last_name" /><br>
+        Password :<input type="password" name="password1" /><br>
+        Confirm Password :<input type="password" name="password2" /><br>
+        <input type="submit" value="Signup">
+    </form>-->
