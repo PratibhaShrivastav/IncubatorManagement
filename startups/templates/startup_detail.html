@@ -1,0 +1,118 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block midcontent %}
+
+ <!-- 
+        ================================================== 
+            Global Page Section Start
+        ================================================== -->
+        <section class="global-page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block">
+                            <h2>{{startup.name}}</h2>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="{% url 'home' %}">
+                                        <i class="ion-ios-home"></i>
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="active">{{startup.name}}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+<!--=======================================
+=            Blog Left sidebar            =
+========================================-->
+
+<section id="blog-full-width">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="sidebar">
+                   
+                        <div class="author widget">
+                            <img class="img-responsive" src="{% static 'images/slider.jpg'%}">
+                            <div class="author-body text-center">
+                                <div class="author-img">
+                                    <img src="{{startup.logo.url}}">
+                                </div>
+                                <div class="author-bio">
+                                    <h1 style="font-weight:bold">{{startup.name}}</h1>
+                                    <!--<p style="font-size:22px;">{{startup.description|safe}}</p>-->
+                                    <p style="font-size:22px;">{{startup.motto|safe}}</p>
+                                    <p style="font-size:22px;">Worth : ${{startup.worth|safe}}</p>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <article class="wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">
+                        <div class="blog-post-image">
+                            <a href="post-fullwidth.html"><img class="img-responsive" src="images/blog/post-1.jpg" alt="" /></a>
+                        </div>
+                        <div class="blog-content">
+                            <h2 class="blogpost-title">
+                           <h2>Description</h2>
+                            </h2>
+                            <p>{{startup.description}}
+                            </p>
+                            
+                        </div>
+                    </article>
+                    <article class="wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">
+                        <div class="blog-post-image">
+                            <a href="post-fullwidth.html"><img class="img-responsive" src="images/blog/post-3.jpg" alt="" /></a>
+                        </div>
+                        <div class="blog-content">
+                            <h2 class="blogpost-title">
+                            <h2>Recent Posts</h2>
+                            </h2>
+                           
+                            <p>recent posts shown here
+                           </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+</section>
+
+<!--====  End of Blog Left sidebar  ====--> 
+
+
+
+
+
+            <!--
+            ==================================================
+            Call To Action Section Start
+            ================================================== -->
+            <section id="call-to-action">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="block">
+                                <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT YOU THINK ?</h1>
+                                <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis,<br>possimus commodi, fugiat magnam temporibus vero magni recusandae? Dolore, maxime praesentium.</p>
+                                <a href="contact.html" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact With Me</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
+
+{% endblock %}
