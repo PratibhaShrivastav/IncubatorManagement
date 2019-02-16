@@ -49,7 +49,7 @@
                                     <span><a href="">{{event.location}}</a></span>
                                 </div>
                                 <p>{{event.description}}</p>
-                                <a href="{% url 'show_event' pk=event.id %}" class="btn btn-dafault btn-details">Continue Reading</a>
+                                <a href="{% url 'events:show_event' pk=event.id %}" class="btn btn-desfault btn-details">Continue Reading</a>
                             </div>
                         </article>
                     {% endfor %}
