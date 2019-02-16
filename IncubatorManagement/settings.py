@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'contactus',
     'aylienapiclient',
     'RoomManagement',
+    'Wallet',
 ]
 
 MIDDLEWARE = [

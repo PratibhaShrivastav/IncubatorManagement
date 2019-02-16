@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+
+{% block precontent %}
+    <style>
+        .data{
+            padding:5px;
+            margin:5px;
+            padding-left:20px;
+            padding-right:20px;
+        }
+    </style>
+{% endblock %}
+
+{% block midcontent %}
+ <!-- 
+        ================================================== 
+            Global Page Section Start
+        ================================================== -->
+        <section class="global-page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block">
+                            <h2>BOOK SEATS</h2>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="{% url "home" %}">
+                                        <i class="ion-ios-home"></i>
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="active">Book_Seats</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+<!-- 
+================================================== 
+    Contact Section Start
+================================================== -->
+<section id="contact-section">
+        <div class="row">
+        <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="block text-center block-center" align="center">
+                <h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s" style="margin-top:100px;">Wallet</h2><hr><br>
+                    <div class="seats-form form">
+                            <center>
+                                Balance : {{wallet.balance}}<br><br>
+                                Coffee Amount pending : {{wallet.coffee_total}}<br><br>
+                                Rent Amount pending : {{wallet.rent_total}}<br><br>
+                                <form method="POST">
+                                    <input type="submit" value="Pay Now">
+                                </form>
+                            </center>
+                        </div>
+                
+                    </div>
+                </div>
+            </div>
+</section> 
+
+{% endblock %}
