@@ -47,8 +47,12 @@ class CreateProfile(CreateView):
     def form_valid(self, form):
         profile = form.save(commit=False)
         startup_id = self.request.POST.get('startup')
-        startup = Startup.objects.get(id=startup_id)
-        profile.startup = startup
+        if startup_id == "-1":
+            profile.mentor = True
+            profile.startup = None
+        else:
+            startup = Startup.objects.get(id=startup_id)
+            profile.startup = startup
         profile.user = self.request.user
         return super().form_valid( form)
 

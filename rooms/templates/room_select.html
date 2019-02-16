@@ -33,12 +33,12 @@
 ================================================== -->
 <section id="contact-section">
         <div class="row">
-            <div class="col-md-5">
-            </div>
             <div class="col-md-4">
+            </div>
+            <div class="col-md-4 text-center">
                 <div class="block">
-                <h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s" style="margin-left:15%;">Room {{room.number}}</h2>
-                    <div class="seats-form form">
+               <center> <h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Room {{room.number}}</h2></center><br>
+                    <center><div class="seats-form form">
                         <form method="POST" class="seats-form form">
                             <select class="form-control" name="room_number">
                                 {% for room in rooms %}
@@ -51,13 +51,12 @@
                                     {% endif %}
                                 {% endfor %}
                             </select><br>
-                            <input type="submit" class="form-control" style="background-color:#02bdd5;font-weight:bold" value="Book seats">
+                            <input type="submit" class="form-control" style="background-color:#02bdd5;font-weight:bold;" value="Book seats">
                         </form>
-                        </div>
+                        </div></center>
                 
                     </div>
                 </div>
-                <div class="col-md-4"></div>
             </div>
 </section> 
 
