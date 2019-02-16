@@ -78,6 +78,9 @@
                                 <div class="dropdown-menu">
                                     <ul>
                                         <li><a href="{% url 'accounts:coffee'%}">Coffee</a></li>
+                                        {% if request.user.username %}
+                                        <li><a href="{% url 'rooms:book_room'%}">Book Room</a></li>
+                                        {% endif %}
                                     </ul>
                                 </div>
                             </li>

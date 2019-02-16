@@ -863,6 +863,10 @@ article {
   -webkit-box-shadow: none;
 } */
 
+#checkme {
+  float: left
+}
+
 #contact-section input {
   display: block;
   height: 40px;
