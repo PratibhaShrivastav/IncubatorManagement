@@ -18,6 +18,7 @@
 
         {% block precontent %}
         {% endblock %}
+
         <!-- Template CSS Files
         ================================================== -->
         <!-- Twitter Bootstrs CSS -->
@@ -104,7 +105,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Event <span class="caret"></span></a>
                                 <div class="dropdown-menu">
                                     <ul>
-                                        <li><a href="404.html">Events</a></li>
+                                        <li><a href="{% url 'events:all_events' %}">Events</a></li>
                                         <li><a href="{% url 'events:create-event' %}">New Event</a></li>
                                     </ul>
                                 </div>
