@@ -1,4 +1,5 @@
 {% extends 'index.html' %}
+{% load static %}
 
 {% block midcontent %}
  <!-- 
@@ -42,11 +43,17 @@
                             <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".6s">
                                 <input type="text" placeholder="Email" class="form-control" name="user_email" id="email">
                             </div>
-                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".6s">
+                            <div class="radio form-group wow fadeInDown form-inline" data-wow-duration="500ms" data-wow-delay=".6s" style="color:black;">
+                                <label><input type="radio" value="1" name="optradio" id="ment" checked>Mentor</label>
+                                <label><input type="radio" value="2" name="optradio" id="noment">Not a Mentor</label>
+                            </div>
+                            <br>&nbsp;&nbsp;
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".6s" id="hidecheck">
                                     <select name="startup" class="form-control">
                                         {% for startup in startups %}
                                             <option value={{startup.id}}>{{startup.name}}</option>
                                         {% endfor %}
+                                         <option value="-1">No, I am a mentor</option>
                                     </select>
                             </div>    
                             <br>
@@ -70,5 +77,4 @@
         </div>
     </div>
 </section> 
-
 {% endblock %}
