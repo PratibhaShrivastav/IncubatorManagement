@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+
+{% block midcontent %}
+ <!-- 
+        ================================================== 
+            Global Page Section Start
+        ================================================== -->
+        <section class="global-page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block">
+                            <h2>BOOK SEATS</h2>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="{% url "home" %}">
+                                        <i class="ion-ios-home"></i>
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="active">Book_Seats</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+<!-- 
+================================================== 
+    Contact Section Start
+================================================== -->
+<section id="contact-section">
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="block">
+               <center> <h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Room {{room.number}}</h2></center><br>
+                    <center><div class="seats-form form">
+                        <form method="POST" class="seats-form form">
+                            <select class="form-control" name="room_num">
+                                {% for room in rooms %}
+                                    {% if room.room_type == 0 %}
+                                        <option value="{{room.room_no}}">{{room.room_no}} (Meeting)</option>
+                                    {% elif room.room_type == 1 %}
+                                        <option value="{{room.room_no}}">{{room.room_no}} (Office)</option>
+                                    {% elif room.room_type == 2 %}
+                                        <option value="{{room.room_no}}">{{room.room_no}} (Conference)</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select><br>
+                            <input type="submit" class="form-control" style="background-color:#02bdd5;font-weight:bold;" value="Book seats">
+                        </form>
+                        </div></center>
+                
+                    </div>
+                </div>
+            </div>
+</section> 
+
+{% endblock %}

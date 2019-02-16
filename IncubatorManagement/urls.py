@@ -27,5 +27,6 @@ urlpatterns = [
     path('rooms/',include('rooms.urls')),
     path('contact/',include('contactus.urls')),
     path('events/',include('events.urls')),
+    path('room-manage/', include('RoomManagement.urls')),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
