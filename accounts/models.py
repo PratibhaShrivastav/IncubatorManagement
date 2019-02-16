@@ -9,6 +9,7 @@ class Profile(models.Model):
     date_joined = models.DateTimeField(auto_now=True)
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
     mentor = models.BooleanField(default=False)
+    url = models.URLField(max_length=200,blank=True,null=True)
 
     def get_full_name(self):
         return self.user.first_name + ' ' + self.user.last_name

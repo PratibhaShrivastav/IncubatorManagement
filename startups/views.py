@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.views.generic import CreateView,DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import StartupLog, Startup
 from django.urls import reverse_lazy
@@ -26,3 +26,8 @@ class Startup_Log(LoginRequiredMixin, CreateView):
 
 def startup_success(request):
     return render(request, 'submit_startup.html')
+
+class Startup_detail(DetailView):
+    model = Startup
+    template_name = 'startup_detail.html'
+    context_object_name = 'startup'
