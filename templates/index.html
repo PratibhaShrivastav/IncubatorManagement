@@ -25,6 +25,7 @@
 
         <!--<link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">-->
         <link rel="stylesheet" href="{% static "css/plugins/bootstrap.min.css" %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Ionicons Fonts Css -->
         <link rel="stylesheet" href="{% static "css/plugins/ionicons.min.css" %}">
         <!-- animate css -->
@@ -76,6 +77,13 @@
                             <li>
                                 <a href="{% url 'home' %}" >Home</a>
                             </li>
+
+                            {% if request.user.username %}
+                                <li>
+                                    <a href="{% url 'startups:create_log' %}" >Create Log</a>
+                                </li>
+                            {% endif %}
+
                             <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Startups <span class="caret"></span></a>
                                     <div class="dropdown-menu">

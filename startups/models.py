@@ -29,4 +29,5 @@ class StartupLog(models.Model):
     date = models.DateField(auto_now=True)
     update_title = models.CharField(max_length=50)
     update_description = models.TextField()
+    sentiment = models.IntegerField(default=0)
     photo = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None,null=True,blank=True)
