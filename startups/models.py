@@ -12,7 +12,7 @@ class Startup(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField(default = "")
     motto = models.CharField(max_length=200)
-    logo = models.ImageField(upload_to='images/startups/logo/',default='images/startups/logo/bg.png')
+    logo = models.ImageField(upload_to='images/startups/logo/',default='images/startups/logo/logo.png')
     worth = models.IntegerField()
     image1 = models.ImageField(null=True,blank=True,upload_to=None, height_field=None, width_field=None, max_length=None)
     image2 = models.ImageField(null=True,blank=True,upload_to=None, height_field=None, width_field=None, max_length=None)

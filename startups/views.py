@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView,DetailView
+from django.views.generic import CreateView,DetailView,ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import StartupLog, Startup
 from django.urls import reverse_lazy
@@ -53,3 +53,8 @@ def check_status(request):
             message = "ERROR"
         return render(request, "apply_status.html", context={'status':message,'status_code':status})     
     return render(request, "status_form.html")
+
+class StartupList(ListView):
+    model = Startup
+    template_name = 'startup_list.html'
+    context_object_name = 'startup'
