@@ -40,25 +40,8 @@
                         <form method="POST">
                             {% csrf_token %}
                             <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".6s">
-                                <input type="text" placeholder="Startup Name" class="form-control" name="name" id="name">
+                                <input type="text" placeholder="Startup Name" class="form-control" name="startup_name" id="name">
                             </div>
-                            
-                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".8s">
-                                <input type="text" placeholder="Motto" class="form-control" name="motto" id="name">
-                            </div>
-                            
-                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".8s">
-                                    <input type="text" placeholder="Worth" class="form-control" name="worth" id="name">
-                            </div>
-
-                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1s">
-                                <input type="file" placeholder="Logo" class="form-control" accept="image/*" name="logo" id="name">
-                            </div>
-                            
-                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.2s">
-                                    <textarea rows="6" placeholder="Description" class="form-control" name="description" id="message"></textarea>    
-                            </div>
-
                             <div id="submit" class="wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.4s">
                                 <input type="submit" value="Submit" class="form-control" style="background-color:#02bdd5;font-weight:bold" id="registerbtn">
                             </div>

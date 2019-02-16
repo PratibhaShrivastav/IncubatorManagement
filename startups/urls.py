@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path,include
-from .views import Startup_Log, CreateStartup, startup_success,Startup_detail
+from .views import Startup_Log, CreateStartup, startup_success,Startup_detail, check_status
 
 app_name = 'startups'
 
@@ -9,4 +9,5 @@ urlpatterns = [
     path('verify-startup/',CreateStartup.as_view(),name='verify-startup'),
     path('verify-startup/success/',startup_success,name='verify-success'),
     path('<int:pk>/',Startup_detail.as_view(),name='startup-detail'),
+    path('status/', check_status , name='check_status'),
 ]

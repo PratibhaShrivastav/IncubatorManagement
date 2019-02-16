@@ -3,6 +3,12 @@ from django.http import HttpResponse
 
 class Startup(models.Model):
     
+    STATUS = (
+        (0, 'PENDING'),
+        (1, 'ACCEPTED'),
+        (2, 'REJECTED'),
+    )
+    
     name = models.CharField(max_length=50)
     description = models.TextField(default = "")
     motto = models.CharField(max_length=200)
@@ -11,6 +17,7 @@ class Startup(models.Model):
     image1 = models.ImageField(null=True,blank=True,upload_to=None, height_field=None, width_field=None, max_length=None)
     image2 = models.ImageField(null=True,blank=True,upload_to=None, height_field=None, width_field=None, max_length=None)
     image3 = models.ImageField(null=True,blank=True,upload_to=None, height_field=None, width_field=None, max_length=None)
+    status = models.IntegerField(choices=STATUS, default=0)
 
     def __str__(self):
         return self.name
