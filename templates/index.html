@@ -83,7 +83,9 @@
                                             <li><a href="{% url 'startups:verify-startup'%}">Apply</a></li>
                                             {% if request.user.username %}
                                             <li><a href="{% url 'startups:check_status'%}">Check Status</a></li>
+                                            
                                             {% endif %}
+                                            <li><a href="{% url 'startups:all-startups' %}">Startups</a></li>
                                         </ul>
                                     </div>
                                 </li>
