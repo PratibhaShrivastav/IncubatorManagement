@@ -40,26 +40,18 @@
                 <h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s" style="margin-left:15%;">Room {{room.number}}</h2>
                     <div class="seats-form form">
                         <form method="POST" class="seats-form form">
-                            <!--For Outputting Fields-->
-                            {% for seat in seats %}
-                                <div class="checkbox">    
-                                {% if seat.startup == startup.id and seat.is_issued %}   
-                                    <input type="checkbox" class="form-control" name="seat_{{seat.id}}" checked>{{seat.id}}
-                                {% elif seat.is_issued %}
-                                    <input type="checkbox" class="form-control" name="seat_{{seat.id}}" checked disabled>{{seat.id}}
-                                {% else %}
-                                    <input type="checkbox" class="form-control" name="seat_{{seat.id}}">{{seat.id}}
-                                {% endif %}
-                                </div>
-                                {% if seat.is_issued %}
-                                    <small><a href="{% url 'rooms:show_seat' pk=seat.id %}">Show Details</a></small>
-                                {% endif %}
-                                <br>
-            
-                            {% endfor %}
-                            <br>
-                            <br>
-                            <input type="submit" class="form-control" value="Book Seats" style="background-color:#02bdd5;margin-left:5%;width:200px">
+                            <select class="form-control" name="room_number">
+                                {% for room in rooms %}
+                                    {% if room.room_type == 0 %}
+                                        <option value="{{room.number}}">{{room.number}} (Meeting)</option>
+                                    {% elif room.room_type == 1 %}
+                                        <option value="{{room.number}}">{{room.number}} (Office)</option>
+                                    {% elif room.room_type == 2 %}
+                                        <option value="{{room.number}}">{{room.number}} (Conference)</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select><br>
+                            <input type="submit" class="form-control" style="background-color:#02bdd5;font-weight:bold" value="Book seats">
                         </form>
                         </div>
                 
