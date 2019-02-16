@@ -7,7 +7,7 @@ class Profile(models.Model):
     startup = models.ForeignKey(Startup,related_name='profiles',null=True,blank=True,on_delete=models.CASCADE)
     user_email = models.EmailField(unique = True)
     date_joined = models.DateTimeField(auto_now=True)
-    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
+    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True,default='avatars/mentor.png')
     mentor = models.BooleanField(default=False)
     url = models.URLField(max_length=200,blank=True,null=True)
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render, reverse
 from django.contrib.auth.models import User
-from django.views.generic import CreateView
+from django.views.generic import CreateView,ListView
 from .forms import UserForm
 from django.urls import reverse_lazy
 from .models import Profile as Profile,Coffee,CoffeeLog,Startup
@@ -11,6 +11,7 @@ from django.core import serializers
 from django.forms.models import model_to_dict
 from django.views.decorators.csrf import csrf_exempt
 from datetime import date
+
 import datetime
 import base64
 

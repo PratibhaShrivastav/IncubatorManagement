@@ -6,7 +6,7 @@
         ================================================== -->
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="icon" href="favicon.ico">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Ignite Incubator</title>
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -65,7 +65,7 @@
                     <!-- logo -->
                     <div class="navbar-brand">
                         <a href="{% url 'home' %}">
-                            <h1 id="brand"> <img src="{% static 'images/Mainlogo.png'%}" height=50px width=170px style="margin-top:-50px"> </h1>
+                            <h1 id="brand"> <img src="{% static 'images/Mainlogo.png'%}" height=55px width=170px style="margin-top:-50px"> </h1>
                         </a>
                     </div>
                     <!-- /logo -->
@@ -163,9 +163,10 @@ Slider Section Start
                     </h1>
                     </section> <!-- cd-intro -->
                     <!-- /.slider -->
-                    <h2 class="wow fadeInUp animated" data-wow-delay=".6s" >
-                        With 10 years experience, I've occupied many roles including digital design director,<br> web designer and developer. This site showcases some of my work.
-                    </h2>
+                    <strong><h2>
+                    <a class="wow fadeInUp animated" data-wow-delay=".6s" href="{% url 'startups:verify-startup'%}">
+                       Interested in incubation, click here to apply</a>
+                    </h2></strong>
                     {% if not user.is_authenticated %}
                     <a class="btn-lines dark light wow fadeInUp animated btn btn-default btn-green" data-wow-delay=".9s" href="{% url 'accounts:signup' %}" id="btn-1">Signup</a>
                     <a class="btn-lines dark light wow fadeInUp animated btn btn-default btn-green" data-wow-delay=".9s" href="{% url 'accounts:login' %}" id="btn-1">Login</a>
@@ -186,13 +187,12 @@ About Section Start
             <div class="col-md-6 col-sm-6">
                 <div class="block wow fadeInLeft" data-wow-delay=".3s" data-wow-duration="500ms">
                     <h2>
-                    ABOUT ME
+                    ABOUT US
                     </h2>
                     <p>
-                        Hello, I’m a UI/UX Designer & Front End Developer from Victoria, Australia. I hold a master degree of Web Design from the World University.And scrambled it to make a type specimen book. It has survived not only five centuries
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, adipisci voluptatum repudiandae, natus impedit repellat aut officia illum at assumenda iusto reiciendis placeat. Temporibus, vero.
+                      The first and the most important thing, also the hardest, on the path towards launching your own start-up, is to come up with an idea that works. Any start-up which aspires to get their ideas into reality or existing business to scale with access to ace mentoring and a plethora of services, this is what 36Inc is. We as a business incubator and accelerator help start-ups and already existing companies to develop by providing services such as fund support, management, mentorship, co-working space, technological assistance or everything that is required for a business to grow.                        Given the myriad roles that a mentor must play when working with early-stage companies, it might take more than one person to meet each company's needs. Incubators and accelerators should consider providing ventures with multiple mentors. Here at 36Inc, we provide extensive mentorship on all things relating to technology and product development and every other aspect related to business.
+                    While we have several feathers to our hat, the most colourful ones are State-of-the-art equipment for rapid prototyping. We have a well-equipped FABLAB, with a separate access. It is not just for incubatees, it’s open to the community at large to enable them to solve unique problems in style.
+
                     </p>
                 </div>
                 
@@ -214,152 +214,38 @@ Portfolio Section Start
 <section id="works" class="works">
     <div class="container">
         <div class="section-heading">
-            <h1 class="title wow fadeInDown" data-wow-delay=".3s">OUR MENTORS</h1>
-            <p class="wow fadeInDown" data-wow-delay=".5s">
-               Mentors can help grow your startups 
-            </p>
+            <h1 class="title wow fadeInDown" data-wow-delay=".3s">OUR MENTORS</h1><hr>
+            
         </div>
         <div class="row">
+        {% for profile in profiles %}
             <div class="col-sm-4 col-xs-12">
                 <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">
                     <div class="img-wrapper">
-                        <img src="{% static "images/portfolio/item-1.jpg" %}" class="img-responsive" alt="this is a title" >
+                       <center> <img src="{{profile.avatar.url}}" class="img-responsive" alt="Mentor" ></center>
                         <div class="overlay">
                             <div class="buttons">
-                                <a rel="gallery" class="fancybox" href="{% static "images/portfolio/item-1.jpg" %}">Demo</a>
-                                <a target="_blank" href="single-portfolio.html">Details</a>
+                                <a rel="gallery" class="fancybox" href="https://www.linkedin.com">LinkedIn</a>
+                                <a target="_blank" href="#">Profile</a>
                             </div>
                         </div>
                     </div>
                     <figcaption>
                     <h4>
-                    <a href="#">
-                        Dew Drop
-                    </a>
+                        
+                        {{profile.user.username}}
+                    
+                    
                     </h4>
                     <p>
-                        Redesigne UI Concept
+                        
+                        {{profile.user_email}}
                     </p>
                     </figcaption>
                 </figure>
             </div>
-            <div class="col-sm-4 col-xs-12">
-                <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="300ms">
-                    <div class="img-wrapper">
-                        <img src="{% static "images/portfolio/item-2.jpg" %}" class="img-responsive" alt="this is a title" >
-                        <div class="overlay">
-                            <div class="buttons">
-                                <a rel="gallery" class="fancybox" href="{% static "images/portfolio/item-2.jpg" %}">Demo</a>
-                                <a target="_blank" href="single-portfolio.html">Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <figcaption>
-                    <h4>
-                    <a href="#">
-                        Bottle Mockup
-                    </a>
-                    </h4>
-                    <p>
-                        Lorem ipsum dolor sit.
-                    </p>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-sm-4 col-xs-12">
-                <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="300ms">
-                    <div class="img-wrapper">
-                        <img src="{% static "images/portfolio/item-3.jpg" %}" class="img-responsive" alt="" >
-                        <div class="overlay">
-                            <div class="buttons">
-                                <a rel="gallery" class="fancybox" href="{% static "images/portfolio/item-3.jpg" %}">Demo</a>
-                                <a target="_blank" href="single-portfolio.html">Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <figcaption>
-                    <h4>
-                    <a href="#">
-                        Table Design
-                    </a>
-                    </h4>
-                    <p>
-                        Lorem ipsum dolor sit amet.
-                    </p>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-sm-4 col-xs-12">
-                <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="600ms">
-                    <div class="img-wrapper">
-                        <img src="{% static "images/portfolio/item-4.jpg" %}" class="img-responsive" alt="" >
-                        <div class="overlay">
-                            <div class="buttons">
-                                <a rel="gallery" class="fancybox" href="{% static "images/portfolio/item-4.jpg" %}">Demo</a>
-                                <a target="_blank" href="single-portfolio.html">Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <figcaption>
-                    <h4>
-                    <a href="#">
-                        Make Up elements
-                    </a>
-                    </h4>
-                    <p>
-                        Lorem ipsum dolor.
-                    </p>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-sm-4 col-xs-12">
-                <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="900ms">
-                    <div class="img-wrapper">
-                        <img src="{% static "images/portfolio/item-5.jpg" %}" class="img-responsive" alt="" >
-                        <div class="overlay">
-                            <div class="buttons">
-                                <a rel="gallery" class="fancybox" href="{% static "images/portfolio/item-5.jpg" %}">Demo</a>
-                                <a target="_blank" href="single-portfolio.html">Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <figcaption>
-                    <h4>
-                    <a href="#">
-                        Shoping Bag Concept
-                    </a>
-                    </h4>
-                    <p>
-                        Lorem ipsum dolor.
-                    </p>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-sm-4 col-xs-12">
-                <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="1200ms">
-                    <div class="img-wrapper">
-                        <img src="{% static "images/portfolio/item-6.jpg" %}" class="img-responsive" alt="" >
-                        <div class="overlay">
-                            <div class="buttons">
-                                <a rel="gallery" class="fancybox" href="{% static "images/portfolio/item-6.jpg" %}">Demo</a>
-                                <a target="_blank" href="single-portfolio.html">Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <figcaption>
-                    <h4>
-                    <a href="#">
-                        Caramel Bottle
-                    </a>
-                    </h4>
-                    <p>
-                        Lorem ipsum dolor.
-                    </p>
-                    </figcaption>
-                </figure>
-            </div>
-        </div>
-    </div>
+            {% endfor %}
+            
 </section> <!-- #works -->
 <!--
 ==================================================
@@ -368,22 +254,20 @@ Portfolio Section Start
 <section id="feature">
     <div class="container">
         <div class="section-heading">
-            <h1 class="title wow fadeInDown" data-wow-delay=".3s">Offer From Me</h1>
-            <p class="wow fadeInDown" data-wow-delay=".5s">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed,<br> quasi dolores numquam dolor vero ex, tempora commodi repellendus quod laborum.
-            </p>
+            <h1 class="title wow fadeInDown" data-wow-delay=".3s">WHAT WE DO</h1>
+            <hr>
         </div>
         <div class="row">
             <div class="col-md-4 col-lg-4 col-xs-12">
                 <div class="media wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="300ms">
                     <div class="media-left">
                         <div class="icon">
-                            <i class="ion-ios-flask-outline"></i>
+                            <i class="fa fa-briefcase" aria-hidden="true"></i>
                         </div>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">Media heading</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, sint.</p>
+                        <h4 class="media-heading">Co-Working Space</h4>
+                        <p>Ideate while competing, Learn with other startups, Get a swanky office for your team, An address to flaunt.</p>
                     </div>
                 </div>
             </div>
@@ -391,12 +275,13 @@ Portfolio Section Start
                 <div class="media wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="600ms">
                     <div class="media-left">
                         <div class="icon">
-                            <i class="ion-ios-lightbulb-outline"></i>
+                            <i class="fa fa-bar-chart" aria-hidden="true"></i>
+
                         </div>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">Well documented.</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, sint.</p>
+                        <h4 class="media-heading">Market Linkages</h4>
+                        <p>Connect with top corporates, Testing of new products, Scale up your idea.</p>
                     </div>
                 </div>
             </div>
@@ -404,12 +289,13 @@ Portfolio Section Start
                 <div class="media wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="900ms">
                     <div class="media-left">
                         <div class="icon">
-                            <i class="ion-ios-lightbulb-outline"></i>
+                           <i class="fa fa-users" aria-hidden="true"></i>
+
                         </div>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">Well documented.</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, sint.</p>
+                        <h4 class="media-heading">Mentorship</h4>
+                        <p>Support by domain and startup experts, Refinement of Value Proposition, Assistance in preparing classy.</p>
                     </div>
                 </div>
             </div>
@@ -417,12 +303,13 @@ Portfolio Section Start
                 <div class="media wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="1200ms">
                     <div class="media-left">
                         <div class="icon">
-                            <i class="ion-ios-americanfootball-outline"></i>
+                           <i class="fa fa-money" aria-hidden="true"></i>
+
                         </div>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">Free updates</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, sint.</p>
+                        <h4 class="media-heading">Funding</h4>
+                        <p>We know that what water is to a plant, money is to startups! We have funding options for all stages of startups</p>
                     </div>
                 </div>
             </div>
@@ -430,12 +317,13 @@ Portfolio Section Start
                 <div class="media wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="1500ms">
                     <div class="media-left">
                         <div class="icon">
-                            <i class="ion-ios-keypad-outline"></i>
+                           <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+
                         </div>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">Solid Support</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, sint.</p>
+                        <h4 class="media-heading">Govt. Support</h4>
+                        <p>t is the first business Incubator cum Accelerator supported by Government of Chhattisgarh. </p>
                     </div>
                 </div>
             </div>
@@ -443,12 +331,13 @@ Portfolio Section Start
                 <div class="media wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="1800ms">
                     <div class="media-left">
                         <div class="icon">
-                            <i class="ion-ios-barcode-outline"></i>
+                           <i class="fa fa-laptop" aria-hidden="true"></i>
+
                         </div>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">Simple Installation</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, sint.</p>
+                        <h4 class="media-heading">Fab lab</h4>
+                        <p>Our well-equipped FABLAB with a separate access is not just for our incubatees.</p>
                     </div>
                 </div>
             </div>
@@ -466,8 +355,8 @@ Portfolio Section Start
                     <div class="row">
                         <div class="col-md-12">
                             <div class="block">
-                                <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT YOU THINK ?</h1>
-                                <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis,<br>possimus commodi, fugiat magnam temporibus vero magni recusandae? Dolore, maxime praesentium.</p>
+                                <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">ANY QUERIES ?</h1>
+                                <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">React out to us. Drop us a message </p>
                                 <a href="contact.html" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact Us</a>
                             </div>
                         </div>
