@@ -1,0 +1,59 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block midcontent %}
+
+    <section class="single-post">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="post-img">
+                            <img class="img-responsive" alt="" src="{{ event.photo.url }}">
+                        </div>
+                        <div class="post-content">
+                            <p>
+                                {{event.title}}    
+                            </p>
+                            <ol>
+                                <li>Location : {{event.location}} </li>
+                                <li>Start Date : {{event.start_date}}</li>
+                                <li>End Date : {{event.end_date}} </li>
+                                {% if startup %}
+                                <li>Organized By: {{startup.name}} </li>
+                                {% endif %}
+                            </ol>
+                            <p>
+                            {{event.desciption}}
+                            </p>
+                        </div>
+                        <ul class="social-share">
+                            <h4>Share this event</h4>
+                            <li>
+                                <a href="#" class="Facebook">
+                                    <i class="ion-social-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="Twitter">
+                                    <i class="ion-social-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="Linkedin">
+                                    <i class="ion-social-linkedin"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="Google Plus">
+                                    <i class="ion-social-googleplus"></i>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+        </section> 
+
+{% endblock %}
