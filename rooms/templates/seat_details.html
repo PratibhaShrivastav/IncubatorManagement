@@ -1,0 +1,55 @@
+{% extends 'index.html' %}
+
+{% block midcontent %}
+ <!-- 
+        ================================================== 
+            Global Page Section Start
+        ================================================== -->
+        <section class="global-page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block">
+                            <h2>BOOK SEATS</h2>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="{% url "home" %}">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="active">Seat</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+<!-- 
+================================================== 
+    Contact Section Start
+================================================== -->
+<section id="contact-section">
+        <div class="row">
+            <div class="col-md-5">
+            </div>
+            <div class="col-md-4">
+                <div class="block">
+                <h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s" style="margin-left:15%;">Seat no {{seat.id}}</h2>
+                    <div class="seats-form form">
+                    {{seat.}}       
+                    </div>
+                        This Seat has been booked by <b>{{startup.name}}</b>
+                    <hr>
+                    From Date: <i>01 Jan 2019</i><br>
+                    Till Date: <i>30 Jan 2020</i><br>
+                    </div>
+
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+</section> 
+
+{% endblock %}

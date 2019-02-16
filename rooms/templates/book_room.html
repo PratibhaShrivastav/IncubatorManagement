@@ -1,0 +1,72 @@
+{% extends 'index.html' %}
+
+{% block midcontent %}
+ <!-- 
+        ================================================== 
+            Global Page Section Start
+        ================================================== -->
+        <section class="global-page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block">
+                            <h2>BOOK SEATS</h2>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="{% url "home" %}">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="active">Book_Seats</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+<!-- 
+================================================== 
+    Contact Section Start
+================================================== -->
+<section id="contact-sectionn">
+        <div class="row">
+        <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="block text-center block-center" align="center">
+                <h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s" style="margin-top:100px;">Room {{room.number}}</h2><hr><br>
+                    <div class="seats-form form">
+                        
+                            <form method="POST" class="seats-form form">
+                                <!--For Outputting Fields-->
+                                
+                                {% for seat in seats %}
+                                    {% if seat.startup == startup.id and seat.is_issued %}   
+                                        <input type="checkbox" class="checkme checkbox-inline" name="seat_{{seat.id}}" checked> &emsp;{{seat.id}}
+                                    {% elif seat.is_issued %}
+                                        <input type="checkbox" class="checkme checkbox-inline" name="seat_{{seat.id}}" checked disabled>&emsp;{{seat.id}}
+                                    {% else %}
+                                        <input type="checkbox" class="checkme checkbox-inline" name="seat_{{seat.id}}">&emsp;{{seat.id}}
+                                    {% endif %}
+
+                                    {% if seat.is_issued %}
+                                        <small><a href="{% url 'rooms:show_seat' pk=seat.id %}">&emsp;Details</a></small>
+                                    {% endif %}
+                                    &emsp;&emsp;&emsp;
+
+                                {% endfor %}
+                                <br>
+                                <br>
+                                <input type="submit" class="form-control" value="Book Seats" style="background-color:#02bdd5;margin-left:5%;margin-bottom:200px;">
+                            </form>
+                        
+                        </div>
+                
+                    </div>
+                </div>
+            </div>
+</section> 
+
+{% endblock %}

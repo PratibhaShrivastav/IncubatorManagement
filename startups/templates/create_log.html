@@ -1,0 +1,71 @@
+{% extends 'index.html' %}
+
+{% block midcontent %}
+ <!-- 
+        ================================================== 
+            Global Page Section Start
+        ================================================== -->
+        <section class="global-page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block">
+                            <h2>STARTUP LOGS</h2>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="{% url "home" %}">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="active">Logs</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+<!-- 
+================================================== 
+    Contact Section Start
+================================================== -->
+<section id="contact-section">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <center><h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Log Update</h2></center>
+                    <div class="contact-form">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".6s">
+                                <input type="text" placeholder="Startup Name" class="form-control" name="startup_name" id="name">
+                            </div>
+                            
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".8s">
+                                <input type="text" placeholder="Log Title" class="form-control" name="update_title" id="name">
+                            </div>
+                            
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.2s">
+                                    <textarea rows="6" placeholder="Log Description" class="form-control" name="update_description" id="message"></textarea>    
+                            </div>
+
+                            <div id="submit" class="wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.4s">
+                                <input type="submit" value="Submit" class="form-control" style="background-color:#02bdd5;font-weight:bold" id="registerbtn">
+                            </div>
+                            {% if form.errors %}
+                                {% for error in form.errors %}
+                                    {{error}}
+                                {% endfor %}
+                            {% endif %}
+                                                
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 
+
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block midcontent %}
+ <!-- 
+        ================================================== 
+            Global Page Section Start
+        ================================================== -->
+        <section class="global-page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block">
+                            <h2>EVENT</h2>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="{% url "home" %}">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="active">Event</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+<!-- 
+================================================== 
+    Contact Section Start
+================================================== -->
+<section id="new-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="block">
+                    <h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">New Event</h2>
+                    <div class="contact-form">
+                        <form method="POST">
+                        <br>
+                        <br>
+                        {% csrf_token %}
+                           <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".6s">
+                                <input type="text" placeholder="Title" class="form-control" name="title" id="name">
+        
+                            </div>
+                            
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.2s">
+                                <textarea rows="6" placeholder="Description" class="form-control" name="description" id="message"></textarea>    
+                            </div>
+                            
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1s">
+                                <input type="date" placeholder="Start date" class="form-control" name="start_date" id="name">
+                            </div>
+                            
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1s">
+                                <input type="date" placeholder="End date" class="form-control" name="end_date" id="name">
+                            </div>
+                            
+                           <select class="form-group form-control wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1s" name="category">
+                                <option value="0">Meeting</option>
+                                <option value="1">Conference</option>
+                                <option value="2">Seminar</option>
+                                <option value="3">Hackathon</option>
+                            </select>
+
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".8s">
+                                <input type="textarea" placeholder="Location" class="form-control" name="location" id="name">
+                            </div>
+                            
+                            <div id="submit" class="wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.4s">
+                                <input type="submit" id="contact-submit" class="btn btn-info btn-send" value="Create">
+                            </div>                      
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-5" class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">
+                 <div class="map-area">
+                  
+                   <h2> <p class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".5s">
+                       ORGANISE MEETINGS, CONFERENCES, SEMINARS & HACKATHONS </h2>
+                    </p>
+                    <div class="map wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".5s">
+                       <img src="{% static 'images/event.jpg'%}">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+</section> 
+
+{% endblock %}

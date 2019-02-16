@@ -1,0 +1,49 @@
+{% extends 'index.html' %}
+
+{% block midcontent %}
+ <!-- 
+        ================================================== 
+            Global Page Section Start
+        ================================================== -->
+        <section class="global-page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block">
+                            <h2>Hi {{user.username}}</h2>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="{% url "home" %}">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="active">Dashboard</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+<!-- 
+================================================== 
+    Contact Section Start
+==================================================--> 
+<section id="contact-section">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <!--<h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Hi {{user.username}}</h2>-->
+                    <div class="dashboard">
+                            <a href="{% url 'accounts:logout' %}">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

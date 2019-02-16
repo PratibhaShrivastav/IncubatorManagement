@@ -1,0 +1,113 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block midcontent %}
+
+ <!-- 
+        ================================================== 
+            Global Page Section Start
+        ================================================== -->
+        <section class="global-page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block">
+                            <h2>{{startup.name}}</h2>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="{% url 'home' %}">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="active">{{startup.name}}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+<!--=======================================
+=            Blog Left sidebar            =
+========================================-->
+
+<section id="blog-full-width">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="sidebar">
+                   
+                        <div class="author widget">
+                            <img class="img-responsive" src="{% static 'images/slider.jpg'%}">
+                            <div class="author-body text-center">
+                                <div class="author-img">
+                                    <img src="{{startup.logo.url}}">
+                                </div>
+                                <div class="author-bio">
+                                    <h1 style="font-weight:bold">{{startup.name}}</h1>
+                                    <!--<p style="font-size:22px;">{{startup.description|safe}}</p>-->
+                                    <p style="font-size:22px;">{{startup.motto|safe}}</p>
+                                    <p style="font-size:22px;">Worth : ${{startup.worth|safe}}</p>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <article class="wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">
+                        <div class="blog-post-image">
+                            <a href="post-fullwidth.html"><img class="img-responsive" src="images/blog/post-1.jpg" alt="" /></a>
+                        </div>
+                        <div class="blog-content">
+                            <h2 class="blogpost-title">
+                           <h2>Description</h2>
+                            </h2>
+                            <p>{{startup.description}}
+                            </p>
+                        </div>
+                    </article>
+                    <article class="wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">
+                        <div class="blog-content" style="margin-top:-60px;">
+                            <h2 class="blogpost-title">
+                            <h2>Recent Logs</h2>
+                            </h2>
+                            <ol style="font-size:14px">
+                           {% for log in startup.log.all %}
+                                <li>
+                                    <ul>
+                                    <li>{{log.update_title}}</li>
+                                    <li>{{log.update_description|safe}}</li>
+                                    <li>{{log.date}}</li>
+                                    {% if log.sentiment == 0 %}
+                                    <li>Neutral</li>
+                                    {% elif log.sentiment == 1 %}
+                                    <li style="color:green">Positive</li>
+                                    {% else %}
+                                    <li style="color:red">Negative</li>
+                                    {% endif %}
+                                    </ul>
+                                </li>
+                                <br>
+                           {% endfor %}
+                           </ol>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+</section>
+
+<!--====  End of Blog Left sidebar  ====--> 
+
+
+
+
+
+            
+
+{% endblock %}

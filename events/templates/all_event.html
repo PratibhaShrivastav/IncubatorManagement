@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block midcontent %}
+ <!-- 
+        ================================================== 
+            Global Page Section Start
+        ================================================== -->
+        <section class="global-page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block">
+                            <h2>EVENT</h2>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="{% url "home" %}">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="active">Event</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+<!--=====================================
+=            Full Width Blog            =
+======================================-->
+<section id="blog-full-width">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    {% for event in events %}
+                        <article class="wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">
+                            <div class="blog-post-image">
+                                <a href="post-fullwidth.html"><img class="img-responsive" src="{{ event.photo.url }}" alt="" /></a>
+                            </div>
+                            <div class="blog-content">
+                                <h2 class="blogpost-title">
+                                <a href="post-fullwidth.html">{{event.title}}</a>
+                                </h2>
+                                <div class="blog-meta">
+                                    <span>{{event.start_date}}</span>
+                                    <span><a href="">{{event.location}}</a></span>
+                                </div>
+                                <p>{{event.description}}</p>
+                                <a href="{% url 'events:show_event' pk=event.id %}" class="btn btn-desfault btn-details">Continue Reading</a>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

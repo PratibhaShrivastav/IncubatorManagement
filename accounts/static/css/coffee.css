@@ -1,0 +1,112 @@
+.main{
+    width: 100vw;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    margin-top:100px;
+  }
+  .coffee-cup{
+    position: relative;
+  }
+  #coffeetext {
+      margin-left:200px;
+  }
+  .cup{
+    width: 150px;
+    height: 110px;
+    background-color: #02bdd5;
+    border-radius: 10px 10px 53px 53px;
+  }
+  .cup::after{
+    content: '';
+    position: absolute;
+    right: -30px;
+    width: 40px;
+    border-radius: 10px 25px 25px 10px;
+      height: 42px;
+      top: 10px;
+    border: 10px solid #02bdd5;
+  }
+  /* .cup::before{
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 10px;
+    box-shadow: inset 3px 0 0 0 rgba(51,51,51,0.2), inset 0 0 0 4px #e6e6e6, inset 0 14px 0 0 #d6d6d6
+  } */
+  
+  .coffee{
+        position: absolute;
+      width: 150px;
+      height: 28px;
+      top: -8px;
+      left: 0px;
+      border-radius: 50%;
+      background: #a9836c;
+  }
+  .coffee::after{
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    box-shadow: 11px 7px 2px -2px #bb9e8d, 26px 0px 2px -3px #bb9e8d, 127px 4px 3px -2px #bb9e8d, 117px 15px 2px -2px #bb9e8d;
+  }
+  .coffee::before{
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 30px;
+    top: -50px;
+     box-shadow: 35px 9px 2px -3px #b7aba385, 78px 4px 3px -2px #b7aba385, 117px 15px 2px -2px #b7aba385;
+    animation: steam 3s linear infinite forwards;
+  }
+  @keyframes steam {
+    0%{
+          transform: translateY(61px);
+      opacity: 0
+    }
+    60%{
+      opacity: 0.7;
+    }
+    100%{
+      transform: translateY(-31px);
+      opacity: 0;
+    }
+  }
+  .heart {
+      position: relative;
+      width: 80px;
+      height: 40px;
+      top: -126px;
+      left: 25px;
+      transform: rotatex(66deg) scale(1, 0.5);
+      }
+      .heart:before,
+      .heart:after {
+        position: absolute;
+        content: "";
+        left: 50px;
+        top: 0;
+        width: 50px;
+        height: 80px;
+        background: #e2d1bf;
+        border-radius: 50px 50px 0 0;
+        transform: rotate(-45deg);
+        transform-origin: 0 100%;
+      }
+      .heart:after {
+        left: 0;
+        transform: rotate(45deg);
+        transform-origin: 100% 100%;
+      }
+  
+  .saucer{
+      width: 253px;
+      height: 25px;
+      background-color:#02bdd5;
+      position: absolute;
+      bottom: 31px;
+      right: -55px;
+      border-radius: 44%;
+  }

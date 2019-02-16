@@ -1,0 +1,88 @@
+{% extends 'index.html' %}
+
+{% block precontent %}
+<!--
+        =================================================
+            Custom Style Sheets 
+        =================================================
+-->
+<style>
+    .application-status{
+        background-color: red;
+        border-radius:10px;
+        padding : 10px;
+        text-align: center;
+    }
+    #status-text{
+        color:beige;
+        font-weight:bold;
+        font-size:20px;
+        font-family:sans-serif;
+    }
+</style>
+
+{% endblock %}
+
+
+{% block midcontent %}
+ <!-- 
+        ================================================== 
+            Global Page Section Start
+        ================================================== -->
+        <section class="global-page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block">
+                            <h2>Status</h2>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="{% url "home" %}">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="active">Verify Status</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+<!-- 
+================================================== 
+    Contact Section Start
+================================================== -->
+<section id="contact-section">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <center><h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Your Application Status</h2></center>
+                    <div class="contact-form">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".6s" style="color:black">
+                                 <hr>
+                                {% if status_code == 0 %} 
+                                    <div class="application-status" style="background-color: #d6c425">
+                                {% elif status_code == 1 %}
+                                    <div class="application-status" style="background-color: #69e22d">
+                                {% elif status_code == 2 %}
+                                    <div class="application-status" style="background-color: #e24b2c">
+                                {% else %}
+                                    <div class="application-status" style="background-color: #e24b2c">
+                                {% endif %}
+                                <span id="status-text">{{status}}</span>
+                                </div>
+                            </div>                 
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 
+
+{% endblock %}

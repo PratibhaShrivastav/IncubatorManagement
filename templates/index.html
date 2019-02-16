@@ -1,0 +1,423 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <!-- Basic Page Needs
+        ================================================== -->
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Ignite Incubator</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="">
+        <!-- Mobile Specific Metas
+        ================================================== -->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {% block precontent %}
+        {% endblock %}
+
+        <!-- Template CSS Files
+        ================================================== -->
+        <!-- Twitter Bootstrs CSS -->
+
+        <!--<link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">-->
+        <link rel="stylesheet" href="{% static "css/plugins/bootstrap.min.css" %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Ionicons Fonts Css -->
+        <link rel="stylesheet" href="{% static "css/plugins/ionicons.min.css" %}">
+        <!-- animate css -->
+        <link rel="stylesheet" href="{% static "css/plugins/animate.css" %}">
+        <!-- Hero area slider css-->
+        <link rel="stylesheet" href="{% static "css/plugins/slider.css" %}">
+        <!-- owl craousel css -->
+        <link rel="stylesheet" href="{% static "css/plugins/owl.carousel.css" %}">
+        <link rel="stylesheet" href="{% static "css/plugins//owl.theme.css" %}">
+        <!-- Fancybox -->
+        <link rel="stylesheet" href="{% static "css/plugins/jquery.fancybox.css" %}">
+        <!-- template main css file -->
+        <link rel="stylesheet" href="{% static "css/style.css" %}">
+
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+
+    </head>
+    <body>
+
+
+        <!--
+        ==================================================
+        Header Section Start
+        ================================================== -->
+        <header id="top-bar" class="navbar-fixed-top animated-header">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- responsive nav button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <!-- /responsive nav button -->
+                    
+                    <!-- logo -->
+                    <div class="navbar-brand">
+                        <a href="{% url 'home' %}">
+                            <h1 id="brand"> <img src="{% static 'images/Mainlogo.png'%}" height=55px width=170px style="margin-top:-50px"> </h1>
+                        </a>
+                    </div>
+                    <!-- /logo -->
+                </div>
+                <!-- main menu -->
+                <nav class="collapse navbar-collapse navbar-right" role="navigation">
+                    <div class="main-menu">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="{% url 'home' %}" >Home</a>
+                            </li>
+
+                            {% if request.user.username %}
+                                <li>
+                                    <a href="{% url 'startups:create_log' %}" >Create Log</a>
+                                </li>
+                            {% endif %}
+
+                            <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Startups <span class="caret"></span></a>
+                                    <div class="dropdown-menu">
+                                        <ul>
+                                            <li><a href="{% url 'startups:verify-startup'%}">Apply</a></li>
+                                            {% if request.user.username %}
+                                            <li><a href="{% url 'startups:check_status'%}">Check Status</a></li>
+                                            
+                                            {% endif %}
+                                            <li><a href="{% url 'startups:all-startups' %}">Startups</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Services <span class="caret"></span></a>
+                                <div class="dropdown-menu">
+                                    <ul>
+                                        <li><a href="{% url 'accounts:coffee'%}">Coffee</a></li>
+                                        {% if request.user.username %}
+                                        <li><a href="{% url 'rooms:book_room'%}">Book Room</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Event <span class="caret"></span></a>
+                                <div class="dropdown-menu">
+                                    <ul>
+                                        <li><a href="{% url 'events:all_events' %}">Events</a></li>
+                                        <li><a href="{% url 'events:create-event' %}">New Event</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <span class="caret"></span></a>
+                                <div class="dropdown-menu">
+                                    <ul>
+                                        <li><a href="blog-fullwidth.html">Blog Full</a></li>
+                                        <li><a href="blog-left-sidebar.html">Blog Left sidebar</a></li>
+                                        <li><a href="blog-right-sidebar.html">Blog Right sidebar</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a href="{% url 'contact:send-message' %}">Contact</a></li>
+                            {% if not request.user.username %}
+                                <li><a href="{% url 'accounts:login' %}"> Login</a></li>
+                            {% else %}
+                                <li><a href="{% url 'accounts:logout' %}"> Logout</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </nav>
+                <!-- /main nav -->
+            </div>
+        </header>
+        
+{% block midcontent %}
+<!--
+==================================================
+Slider Section Start
+================================================== -->
+<section id="hero-area" >
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div class="block wow fadeInUp" data-wow-delay=".3s">
+                <!-- Slider -->
+                <section class="cd-intro">
+                    <h1 class="wow fadeInUp animated cd-headline slide" data-wow-delay=".4s" >
+                    <span>WE PROVIDE QUALITY AND COST EFFECTIVE INCUBATION</span><br>
+                    <span class="cd-words-wrapper">
+                        <b class="is-visible">INCUBATOR</b>
+                        <b>ACCELERATOR</b>
+                        <b>STARTUPS</b>
+                    </span>
+                    </h1>
+                    </section> <!-- cd-intro -->
+                    <!-- /.slider -->
+                    <strong><h2>
+                    <a class="wow fadeInUp animated" data-wow-delay=".6s" href="{% url 'startups:verify-startup'%}">
+                       Interested in incubation, click here to apply</a>
+                    </h2></strong>
+                    {% if not user.is_authenticated %}
+                    <a class="btn-lines dark light wow fadeInUp animated btn btn-default btn-green" data-wow-delay=".9s" href="{% url 'accounts:signup' %}" id="btn-1">Signup</a>
+                    <a class="btn-lines dark light wow fadeInUp animated btn btn-default btn-green" data-wow-delay=".9s" href="{% url 'accounts:login' %}" id="btn-1">Login</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!--/#main-slider-->
+
+<!--
+==================================================
+About Section Start
+================================================== -->
+<section id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="block wow fadeInLeft" data-wow-delay=".3s" data-wow-duration="500ms">
+                    <h2>
+                    ABOUT US
+                    </h2>
+                    <p>
+                      The first and the most important thing, also the hardest, on the path towards launching your own start-up, is to come up with an idea that works. Any start-up which aspires to get their ideas into reality or existing business to scale with access to ace mentoring and a plethora of services, this is what 36Inc is. We as a business incubator and accelerator help start-ups and already existing companies to develop by providing services such as fund support, management, mentorship, co-working space, technological assistance or everything that is required for a business to grow.                        Given the myriad roles that a mentor must play when working with early-stage companies, it might take more than one person to meet each company's needs. Incubators and accelerators should consider providing ventures with multiple mentors. Here at 36Inc, we provide extensive mentorship on all things relating to technology and product development and every other aspect related to business.
+                    While we have several feathers to our hat, the most colourful ones are State-of-the-art equipment for rapid prototyping. We have a well-equipped FABLAB, with a separate access. It is not just for incubatees, it’s open to the community at large to enable them to solve unique problems in style.
+
+                    </p>
+                </div>
+                
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="block wow fadeInRight" data-wow-delay=".3s" data-wow-duration="500ms">
+                    <img src="{% static "images/about/about.jpg" %}">
+                </div>
+            </div>
+        </div>
+    </div>
+</section> <!-- /#about -->
+
+
+<!--
+==================================================
+Portfolio Section Start
+================================================== -->
+<section id="works" class="works">
+    <div class="container">
+        <div class="section-heading">
+            <h1 class="title wow fadeInDown" data-wow-delay=".3s">OUR MENTORS</h1><hr>
+            
+        </div>
+        <div class="row">
+        {% for profile in profiles %}
+            <div class="col-sm-4 col-xs-12">
+                <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">
+                    <div class="img-wrapper">
+                       <center> <img src="{{profile.avatar.url}}" class="img-responsive" alt="Mentor" ></center>
+                        <div class="overlay">
+                            <div class="buttons">
+                                <a rel="gallery" class="fancybox" href="https://www.linkedin.com">LinkedIn</a>
+                                <a target="_blank" href="#">Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                    <figcaption>
+                    <h4>
+                        
+                        {{profile.user.username}}
+                    
+                    
+                    </h4>
+                    <p>
+                        
+                        {{profile.user_email}}
+                    </p>
+                    </figcaption>
+                </figure>
+            </div>
+            {% endfor %}
+            
+</section> <!-- #works -->
+<!--
+==================================================
+Portfolio Section Start
+================================================== -->
+<section id="feature">
+    <div class="container">
+        <div class="section-heading">
+            <h1 class="title wow fadeInDown" data-wow-delay=".3s">WHAT WE DO</h1>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-xs-12">
+                <div class="media wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="300ms">
+                    <div class="media-left">
+                        <div class="icon">
+                            <i class="fa fa-briefcase" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Co-Working Space</h4>
+                        <p>Ideate while competing, Learn with other startups, Get a swanky office for your team, An address to flaunt.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-xs-12">
+                <div class="media wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="600ms">
+                    <div class="media-left">
+                        <div class="icon">
+                            <i class="fa fa-bar-chart" aria-hidden="true"></i>
+
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Market Linkages</h4>
+                        <p>Connect with top corporates, Testing of new products, Scale up your idea.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-xs-12">
+                <div class="media wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="900ms">
+                    <div class="media-left">
+                        <div class="icon">
+                           <i class="fa fa-users" aria-hidden="true"></i>
+
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Mentorship</h4>
+                        <p>Support by domain and startup experts, Refinement of Value Proposition, Assistance in preparing classy.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-xs-12">
+                <div class="media wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="1200ms">
+                    <div class="media-left">
+                        <div class="icon">
+                           <i class="fa fa-money" aria-hidden="true"></i>
+
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Funding</h4>
+                        <p>We know that what water is to a plant, money is to startups! We have funding options for all stages of startups</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-xs-12">
+                <div class="media wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="1500ms">
+                    <div class="media-left">
+                        <div class="icon">
+                           <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Govt. Support</h4>
+                        <p>t is the first business Incubator cum Accelerator supported by Government of Chhattisgarh. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-xs-12">
+                <div class="media wow fadeInDown animated" data-wow-duration="500ms" data-wow-delay="1800ms">
+                    <div class="media-left">
+                        <div class="icon">
+                           <i class="fa fa-laptop" aria-hidden="true"></i>
+
+                        </div>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Fab lab</h4>
+                        <p>Our well-equipped FABLAB with a separate access is not just for our incubatees.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> <!-- /#feature -->
+
+{% endblock %}
+            <!--
+            ==================================================
+            Call To Action Section Start
+            ================================================== -->
+            <section id="call-to-action">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="block">
+                                <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">ANY QUERIES ?</h1>
+                                <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">React out to us. Drop us a message </p>
+                                <a href="contact.html" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact Us</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
+
+            <!--
+            ==================================================
+            Footer Section Start
+            ================================================== -->
+            <footer id="footer">
+                      <center>  <p class="copyright">Copyright:&nbsp;&nbsp;<a href="{% url 'home' %}" style="font-weight:bold;font-size:16px;">IgniteIncubator</a></center><br> 
+                        </p>
+                    </div>
+                   <!-- <div class="col-md-4">
+                        <ul class="social">
+                            <li>
+                                <a href="http://wwww.fb.com/themefisher" class="Facebook">
+                                    <i class="ion-social-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://wwww.twitter.com/themefisher" class="Twitter">
+                                    <i class="ion-social-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="Linkedin">
+                                    <i class="ion-social-linkedin"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://wwww.fb.com/themefisher" class="Google Plus">
+                                    <i class="ion-social-googleplus"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>-->
+                </div>
+            </footer> <!-- /#footer -->
+
+	<!-- Template Javascript Files
+	================================================== -->
+	<!-- jquery -->
+	<script src="{% static "js/plugins/jQurey/jquery.min.js" %}"></script>
+	<!-- Form Validation -->
+    <script src="{% static "js/plugins/form-validation/jquery.form.js" %}"></script> 
+    <script src="{% static "js/plugins/form-validation/jquery.validate.min.js" %}"></script>
+	<!-- owl carouserl js -->
+	<script src="{% static "js/plugins/owl-carousel/owl.carousel.min.js" %}"></script>
+	<!-- bootstrap js -->
+	<script src="{% static "js/plugins/bootstrap/bootstrap.min.js" %}"></script>
+	<!-- wow js -->
+	<script src="{% static "js/plugins/wow-js/wow.min.js" %}"></script>
+	<!-- slider js -->
+	<script src="{% static "js/plugins/slider/slider.js" %}"></script>
+	<!-- Fancybox -->
+	<script src="{% static "js/plugins/facncybox/jquery.fancybox.js" %}"></script>
+	<!-- template main js -->
+	<script src="{% static "js/main.js" %}"></script>
+ 	</body>
+</html>

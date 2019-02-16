@@ -1,0 +1,59 @@
+{% extends 'index.html' %}
+
+{% block midcontent %}
+ <!-- 
+        ================================================== 
+            Global Page Section Start
+        ================================================== -->
+        <section class="global-page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block">
+                            <h2>STARTUP</h2>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="{% url "home" %}">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="active">Submit your Startup</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+<!-- 
+================================================== 
+    Contact Section Start
+================================================== -->
+<section id="contact-section">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block">
+                    <center><h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Log Details</h2></center>
+                    <div class="contact-form" style="color:black">
+                        <h3>{{log.update_title}}</h3>
+                        <hr>
+                        <br>
+                        {{log.update_description}}
+                        <br><br>
+                        {% if log.sentiment == 0 %}
+                            Progress : Neutral
+                        {% elif log.sentiment == 1 %}
+                            Progress : Positive
+                        {% else %}
+                            Progress : Negative
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 
+
+{% endblock %}
