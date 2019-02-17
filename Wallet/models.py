@@ -9,4 +9,4 @@ class Wallet(models.Model):
     balance = models.IntegerField(default=1000)
 
     def __str__(self):
-        return user.username + '-Wallet'
+        return self.user.username + '-Wallet'

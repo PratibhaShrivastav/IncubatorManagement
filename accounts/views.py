@@ -120,7 +120,7 @@ def dashboard(request):
         #context["status"] = reminder(self.request.user.pk)
         status = reminder(request.user.pk)
         print(status)
-    return render(request, 'dashboard.html', {'user':user_dict, 'seats':seat_list,'status':status})
+    return render(request, 'dashboard.html', {'user':user_dict, 'senders':senders,'status':status})
     
 
 @login_required
