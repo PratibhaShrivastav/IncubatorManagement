@@ -1,6 +1,7 @@
 from django import views
 from django.views.generic import TemplateView
 from accounts.models import Profile
+from accounts.views import reminder
 
 class Home(TemplateView):
     template_name = 'index.html'
@@ -13,5 +14,10 @@ class Home(TemplateView):
             if profile.mentor == True:
                 profile_list.append(profile)
         context["profiles"] = profile_list
+        if not self.request.user.is_authenticated:
+            context["status"] = -1
+        else:    
+            context["status"] = reminder(self.request.user.pk)
+        print(context["status"])
         return context
     

@@ -21,6 +21,14 @@ def get_wallet(request):
     wallet.coffee_total = coffees*25
     seat_rent = SeatRequest.objects.all().filter(request_to=request.user, paid=False).count()
     wallet.rent_total = seat_rent*100
+    
+    if wallet.balance > wallet.coffee_total:
+        wallet.balance = wallet.balance - wallet.coffee_total
+        wallet.coffee_total = 0
+    if wallet.balance > wallet.rent_total:
+        wallet.balance = wallet.balance - wallet.rent_total
+        wallet.rent_total = 0
+    
     wallet.save()
     wallet = model_to_dict(wallet)
 

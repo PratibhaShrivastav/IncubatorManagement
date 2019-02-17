@@ -31,13 +31,17 @@
 <!-- 
 ================================================== 
     Contact Section Start
-==================================================--> 
-<section id="contact-section">
+==================================================-->
+{% if status == 1 %} 
+<marquee style="color:red; font-size:20px;font-family:sans-serif;margin-top:30px;">Your account balance is low, Please Recharge!</marquee>
+{% endif %}
+
+<section id="contact-section" >
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
                     <!--<h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Hi {{user.username}}</h2>-->
-                    <div class="dashboard">
+                  <center>  <div class="dashboard">
                             Requests received:<br><hr>
                             {% for seat in seats %}
                             <form method="POST">    
@@ -49,7 +53,7 @@
                                 <input type="submit" value="Approve">
                             </form>
                             {% endfor %}
-                    </div>
+                    </div></center>
                 </div>
             </div>
         </div>
