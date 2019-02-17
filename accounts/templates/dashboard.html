@@ -38,7 +38,17 @@
                 <div class="block">
                     <!--<h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Hi {{user.username}}</h2>-->
                     <div class="dashboard">
-                            <a href="{% url 'accounts:logout' %}">Logout</a>
+                            Requests received:<br><hr>
+                            {% for seat in seats %}
+                            <form method="POST">    
+                                Request by : {{seat.request_from}}<br><br>
+                                Requested on : {{seat.seat.date}}<br><br>
+                                Seat number : {{seat.seat.seat_no}}<br><br>
+                                <input type="hidden" value={{seat.seat.id}} name="seatid">
+                                <input type="hidden" value={{seat.request_from}} name="userid">
+                                <input type="submit" value="Approve">
+                            </form>
+                            {% endfor %}
                     </div>
                 </div>
             </div>

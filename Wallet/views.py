@@ -17,10 +17,10 @@ def get_wallet(request):
     except:
         wallet = Wallet(user=request.user)
         wallet.save()
-    coffees = CoffeeLog.objects.filter(user=request.user, order_complete=True).count()
-    wallet.total_coffee = coffees*25
-    seat_rent = SeatRequest.objects.all().filter(request_to=request.user, approved=True, paid=False).count()
-    wallet.total_rent = seat_rent*100
+    coffees = CoffeeLog.objects.filter(user=request.user, order_complete=False).count()
+    wallet.coffee_total = coffees*25
+    seat_rent = SeatRequest.objects.all().filter(request_to=request.user, approved=False, paid=False).count()
+    wallet.rent_total = seat_rent*100
     wallet.save()
     wallet = model_to_dict(wallet)
 
