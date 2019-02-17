@@ -1,13 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 from django.views.generic import CreateView,DetailView,ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import StartupLog, Startup
+from .models import StartupLog, Startup, Mentoring
 from django.urls import reverse_lazy
-from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from aylienapiclient import textapi
 import json
+from django.views.decorators.csrf import csrf_exempt
 from django.forms.models import model_to_dict
+from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
 
 
 class CreateStartup(CreateView):
@@ -82,3 +84,14 @@ def submit_log(request):
         return render(request, "log_details.html", context={'log':log})
 
     return render(request, "create_log.html")
+
+@login_required
+def request_mentor(request, pk):
+    
+    mentor = User.objects.get(pk=pk)
+    startup = request.user.profile.all()[0].startup
+    if Mentoring.objects.filter(mentor=mentor, startup=startup, status=0).count() == 0:
+        mentor_relation = Mentoring(mentor=mentor, startup=startup, status=0, action=request.user.pk)
+        mentor_relation.save()
+    
+    return HttpResponseRedirect(reverse('home')) 

@@ -31,24 +31,37 @@
 <!-- 
 ================================================== 
     Contact Section Start
-==================================================--> 
-<section id="contact-section">
+==================================================-->
+{% if status == 1 %} 
+<marquee style="color:red; font-size:20px;font-family:sans-serif;margin-top:30px;">Your account balance is low, Please Recharge!</marquee>
+{% endif %}
+
+<section id="contact-section" >
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
                     <!--<h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Hi {{user.username}}</h2>-->
-                    <div class="dashboard">
+                    <div class="dashboard text-center" style="font-size:30px">
+                            <center>
                             Requests received:<br><hr>
-                            {% for seat in seats %}
-                            <form method="POST">    
-                                Request by : {{seat.request_from}}<br><br>
-                                Requested on : {{seat.seat.date}}<br><br>
-                                Seat number : {{seat.seat.seat_no}}<br><br>
-                                <input type="hidden" value={{seat.seat.id}} name="seatid">
-                                <input type="hidden" value={{seat.request_from}} name="userid">
-                                <input type="submit" value="Approve">
+                            {% for sender in senders %}
+                            
+                            <form method="POST" action={% url 'accounts:approve_request' %} class="text-center">    
+                                Request by : {{ sender.username }}<br><br>
+                                <input type="hidden" value="{{sender.id}}" name="userid">
+                                <input type="submit" style="max-width:80px;margin:auto;background-color:#02bdd5;font-weight:bold" class="center form-control" value="Approve">
                             </form>
+                            </center>
                             {% endfor %}
+                            <hr>
+                            {% if mentor %}
+                                {% for mentoring_list in  mentoring_lists %}
+                                    <form action={% url 'accounts:confirm-mentor' pk=mentoring_list.id %} request="POST">
+                                        Request by : {{mentoring_list.name}}
+                                        <input type="submit" style="max-width:80px;margin:auto;background-color:#02bdd5;font-weight:bold" class="center btn btn-sm form-control" value="Approve">
+                                    </form>
+                                {% endfor %}
+                            {% endif %}
                     </div>
                 </div>
             </div>
