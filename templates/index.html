@@ -78,12 +78,6 @@
                                 <a href="{% url 'home' %}" >Home</a>
                             </li>
 
-                            {% if request.user.username %}
-                                <li>
-                                    <a href="{% url 'startups:create_log' %}" >Create Log</a>
-                                </li>
-                            {% endif %}
-
                             <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Startups <span class="caret"></span></a>
                                     <div class="dropdown-menu">
@@ -104,7 +98,7 @@
                                     <ul>
                                         <li><a href="{% url 'accounts:coffee'%}">Coffee</a></li>
                                         {% if request.user.username %}
-                                        <li><a href="{% url 'rooms:book_room'%}">Book Room</a></li>
+                                        <li><a href="{% url 'Room:room_list'%}">Book Room</a></li>
                                         {% endif %}
                                     </ul>
                                 </div>
@@ -118,16 +112,18 @@
                                     </ul>
                                 </div>
                             </li>
+                            {% if request.user.username %}
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Extras <span class="caret"></span></a>
                                 <div class="dropdown-menu">
                                     <ul>
-                                        <li><a href="blog-fullwidth.html">Blog Full</a></li>
-                                        <li><a href="blog-left-sidebar.html">Blog Left sidebar</a></li>
-                                        <li><a href="blog-right-sidebar.html">Blog Right sidebar</a></li>
+                                        <li><a href="{% url 'accounts:dashboard' %}">Dashboard</a></li>
+                                        <li><a href="{% url 'startups:create_log' %}">Create Log</a></li>
+                                        <li><a href="{% url 'wallet:get_wallet' %}">Wallet</a></li>
                                     </ul>
                                 </div>
                             </li>
+                            {% endif %}
                             <li><a href="{% url 'contact:send-message' %}">Contact</a></li>
                             {% if not request.user.username %}
                                 <li><a href="{% url 'accounts:login' %}"> Login</a></li>

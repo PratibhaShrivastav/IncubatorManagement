@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.views.generic import CreateView,ListView
 from .forms import UserForm
 from django.urls import reverse_lazy
+from RoomManagement.models import Seat, SeatRequest
 from .models import Profile as Profile,Coffee,CoffeeLog,Startup
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -85,10 +86,30 @@ def login(request):
     return render(request, 'login.html')
 
 @login_required
+@csrf_exempt
 def dashboard(request):
+    if request.method=="POST":
+        seat_id = request.POST.get('seatid')
+        user_id = request.POST.get('userid')
+
+        seat = Seat.objects.get(seat_no=seat_id)
+        user = User.objects.get(id = user_id)
+        seat_requests = SeatRequest.objects.filter(seat=seat, request_from=user)
+
+        for seat_request in seat_requests:
+            seat_request.approve = True
+            seat_request.save()
+
     user = request.user
+    seats = SeatRequest.objects.all().filter(request_to=request.user, approved=False)
+
+    seat_list = []
+    for seat in seats:
+        seat_list.append(model_to_dict(seat))
+
     user_dict = model_to_dict(user)
-    return render(request, 'dashboard.html', {'user':user_dict})
+    return render(request, 'dashboard.html', {'user':user_dict, 'seats':seat_list})
+    
 
 @login_required
 def get_coffee(request):

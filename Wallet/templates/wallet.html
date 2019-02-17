@@ -1,5 +1,16 @@
 {% extends 'index.html' %}
 
+{% block precontent %}
+    <style>
+        .data{
+            padding:5px;
+            margin:5px;
+            padding-left:20px;
+            padding-right:20px;
+        }
+    </style>
+{% endblock %}
+
 {% block midcontent %}
  <!-- 
         ================================================== 
@@ -14,11 +25,11 @@
                             <ol class="breadcrumb">
                                 <li>
                                     <a href="{% url "home" %}">
-                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                        <i class="ion-ios-home"></i>
                                         Home
                                     </a>
                                 </li>
-                                <li class="active">Seat</li>
+                                <li class="active">Book_Seats</li>
                             </ol>
                         </div>
                     </div>
@@ -33,22 +44,23 @@
 ================================================== -->
 <section id="contact-section">
         <div class="row">
-            <div class="col-md-5">
-            </div>
+        <div class="col-md-4"></div>
             <div class="col-md-4">
-                <div class="block">
-                <h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s" style="margin-left:15%;">Seat no {{seat.id}}</h2>
+                <div class="block text-center block-center" align="center">
+                <h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s" style="margin-top:100px;">Wallet</h2><hr><br>
                     <div class="seats-form form">
-                    {{seat.seat_no}}       
+                            <center>
+                                Balance : {{wallet.balance}}<br><br>
+                                Coffee Amount pending : {{wallet.coffee_total}}<br><br>
+                                Rent Amount pending : {{wallet.rent_total}}<br><br>
+                                <form method="POST">
+                                    <input type="submit" value="Pay Now">
+                                </form>
+                            </center>
+                        </div>
+                
                     </div>
-                        This Seat has been booked by <b>{{seat.startup.name}}</b>
-                    <hr>
-                    From Date: <i>01 Jan 2019</i><br>
-                    Till Date: <i>30 Jan 2020</i><br>
-                    </div>
-
                 </div>
-                <div class="col-md-4"></div>
             </div>
 </section> 
 

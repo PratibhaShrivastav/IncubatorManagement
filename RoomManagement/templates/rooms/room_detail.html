@@ -1,0 +1,81 @@
+{% extends 'index.html' %}
+
+{% block precontent %}
+    <style>
+        .data{
+            padding:5px;
+            margin:5px;
+            padding-left:20px;
+            padding-right:20px;
+        }
+    </style>
+{% endblock %}
+
+{% block midcontent %}
+ <!-- 
+        ================================================== 
+            Global Page Section Start
+        ================================================== -->
+        <section class="global-page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block">
+                            <h2>BOOK SEATS</h2>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="{% url "home" %}">
+                                        <i class="ion-ios-home"></i>
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="active">Book_Seats</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+<!-- 
+================================================== 
+    Contact Section Start
+================================================== -->
+<section id="contact-section">
+        <div class="row">
+        <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="block text-center block-center" align="center">
+                <h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s" style="margin-top:100px;">Room {{room.number}}</h2><hr><br>
+                    <div class="seats-form form">
+                            <center>
+                            <table id="seat-table">
+                                {% for seat in seats %}
+                                    <tr>
+                                        {% if seat.booked %}
+                                        <form action={% url 'Room:seat_book' pk=seat.seat_no %} method="POST">
+                                        
+                                            <td class="data">{{seat.seat_no}}</td> 
+                                            <td class="data">Booked for <b>{{seat.user}}</b><br>
+                                                Till : <b>30/3/19{{seat.date}}</b></td>
+                                        </form>    
+                                        {% else %}
+                                        <form action={% url 'Room:seat_book' pk=seat.seat_no %} method="POST">
+                                            <td class="data">{{seat.seat_no}}</td>
+                                            <input type="hidden" class="inline" value="{{seat.seat_no}}" name="seat_id">
+                                            <td class="data"><input type="submit" value="Book Now"></td>
+                                        </form>
+                                        {% endif %}
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                            </center>
+                        </div>
+                
+                    </div>
+                </div>
+            </div>
+</section> 
+
+{% endblock %}
