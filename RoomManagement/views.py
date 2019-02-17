@@ -4,7 +4,6 @@ from django.forms.models import model_to_dict
 from .models import Room, Seat, SeatRequest
 from django.contrib.auth.models import User
 from datetime import timedelta
-import pdb
 
 @csrf_exempt
 def room_detail(request):
@@ -61,6 +60,8 @@ def seat_request(request):
             seat_request = SeatRequest(seat=seat, request_from=request_by, request_to=user)
             seat_request.save()
         else:
+            seat_request = SeatRequest(seat=seat, request_from=request_by, request_to=user, approved=True)
+            seat_request.save()
             seat.booked = True
             seat.user = request_by
             seat.date = seat.date + timedelta(days=30)

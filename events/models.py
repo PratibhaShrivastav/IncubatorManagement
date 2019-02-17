@@ -17,7 +17,7 @@ class Event(models.Model):
     end_date = models.DateField(auto_now=False)
     category = models.IntegerField(choices=CATEGORY_OPTIONS)
     location = models.TextField(default=None)
-    photo = models.ImageField(upload_to='images/events/', height_field=None, width_field=None, max_length=None,null=True,blank=True)
+    photo = models.ImageField(upload_to='images/events/', default='images/events/codergirl.png', height_field=None, width_field=None, max_length=None,null=True,blank=True)
 
     def __str__(self):
         return self.title

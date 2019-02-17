@@ -11,9 +11,8 @@ from django.contrib.auth import login as auth_login, logout as auth_logout, auth
 from django.core import serializers
 from django.forms.models import model_to_dict
 from django.views.decorators.csrf import csrf_exempt
-from datetime import date
+from datetime import datetime
 
-import datetime
 import base64
 
 
@@ -119,12 +118,11 @@ def get_coffee(request):
     else:
         coffee =  Coffee.objects.get(user=request.user)
     coffee_log = CoffeeLog()
-    time = datetime.datetime.now()
+    time = datetime.today()
     datestring = str(time)
     coffee.total_coffee = coffee.total_coffee + 1 
     coffee.save()
-    token = str(request.user.username)+datestring
-    token = encode('COFFEE', token)
+    token = str(request.user.username)+ datestring[:10]  + str(coffee.total_coffee)
     coffee_log.token = token
     coffee_log.user = request.user
     
@@ -155,20 +153,3 @@ def verify_coffee(request):
     else:
         return render(request,'verify_coffee.html',context={'token':True,'sent':1})
 
-
-def encode(key, clear):
-    enc = []
-    for i in range(len(clear)):
-        key_c = key[i % len(key)]
-        enc_c = chr((ord(clear[i]) + ord(key_c)) % 256)
-        enc.append(enc_c)
-    return base64.urlsafe_b64encode("".join(enc).encode()).decode()
-
-def decode(key, enc):
-    dec = []
-    enc = base64.urlsafe_b64decode(enc).decode()
-    for i in range(len(enc)):
-        key_c = key[i % len(key)]
-        dec_c = chr((256 + ord(enc[i]) - ord(key_c)) % 256)
-        dec.append(dec_c)
-    return "".join(dec)

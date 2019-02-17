@@ -19,7 +19,7 @@ def get_wallet(request):
         wallet.save()
     coffees = CoffeeLog.objects.filter(user=request.user, order_complete=False).count()
     wallet.coffee_total = coffees*25
-    seat_rent = SeatRequest.objects.all().filter(request_to=request.user, approved=False, paid=False).count()
+    seat_rent = SeatRequest.objects.all().filter(request_to=request.user, paid=False).count()
     wallet.rent_total = seat_rent*100
     wallet.save()
     wallet = model_to_dict(wallet)
