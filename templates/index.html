@@ -41,11 +41,18 @@
         <link rel="stylesheet" href="{% static "css/style.css" %}">
 
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.js"></script>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
     </head>
     <body>
-
-
+        {% if status == 1 %}
+            <script>
+                $.notify('Your Balance is below $100', 'danger');
+            </script>
+            ASdasfasf
+        {% endif %}
+        
         <!--
         ==================================================
         Header Section Start
@@ -358,7 +365,7 @@ Portfolio Section Start
                             <div class="block">
                                 <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">ANY QUERIES ?</h1>
                                 <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">React out to us. Drop us a message </p>
-                                <a href="contact.html" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact Us</a>
+                                <a href="{% url 'contact:send-message'%}" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact Us</a>
                             </div>
                         </div>
                         

@@ -13,6 +13,7 @@ from django.forms.models import model_to_dict
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime
 from startups.models import Mentoring
+from django.shortcuts import get_object_or_404
 
 
 
@@ -112,7 +113,14 @@ def dashboard(request):
     for seat in seats:
         senders.append(model_to_dict(seat.request_from))
     user_dict = model_to_dict(user)
-    return render(request, 'dashboard.html', {'user':user_dict,'senders':senders, 'mentoring_lists':mentoring_list, 'mentor':mentor})
+    if not request.user.is_authenticated:
+        status = -1
+        #context["status"] = -1
+    else:    
+        #context["status"] = reminder(self.request.user.pk)
+        status = reminder(request.user.pk)
+        print(status)
+    return render(request, 'dashboard.html', {'user':user_dict, 'seats':seat_list,'status':status})
     
 
 @login_required
@@ -131,20 +139,19 @@ def get_coffee(request):
     coffee_log.token = token
     coffee_log.user = request.user
     
-    print("free = ",coffee.free_coffee, " | total :",coffee.total_coffee)
     if coffee.total_coffee < coffee.free_coffee:
         free_coffee = True
         coffee_left = coffee.free_coffee - coffee.total_coffee
-        amount_due = 0
     else:
         free_coffee = False
         coffee_extra = coffee.total_coffee - coffee.free_coffee
         coffee.amount_due = coffee_extra*15
-        amount_due = coffee.amount_due
         coffee.save()
         coffee_left = 0
     
     coffee_log.save()
+    wallet = request.user.wallet
+    amount_due = wallet.coffee_total
     return render(request,'getcoffee.html',context={'token':coffee_log.token,'free':free_coffee,'left':coffee_left,'amount_due':amount_due})
 
 @csrf_exempt
@@ -173,3 +180,12 @@ def confirm_mentor(request, pk):
         mentor_request.action = user.pk
         mentor_request.save()
     return HttpResponseRedirect(reverse('accounts:dashboard')) 
+
+
+def reminder(pk):
+    user = User.objects.get(id=pk)
+    status=0
+    print(user.wallet.balance)
+    if user.wallet.balance<100:
+        status=1
+    return status
