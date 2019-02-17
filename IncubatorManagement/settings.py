@@ -138,6 +138,6 @@ MEDIA_URL = '/media/'
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'pratibha.shrivastav99@gmail.com'
-EMAIL_HOST_PASSWORD = ' IAmAmbitious'
+EMAIL_HOST_USER = 'email@gmail.com'
+EMAIL_HOST_PASSWORD = 'YourPassword'
 EMAIL_PORT = 587
