@@ -16,7 +16,7 @@
                             <ol class="breadcrumb">
                                 <li>
                                     <a href="{% url 'home' %}">
-                                        <i class="ion-ios-home"></i>
+                                        <i class="fa fa-home" aria-hidden="true"></i>
                                         Home
                                     </a>
                                 </li>
@@ -69,20 +69,32 @@
                             </h2>
                             <p>{{startup.description}}
                             </p>
-                            
                         </div>
                     </article>
                     <article class="wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">
-                        <div class="blog-post-image">
-                            <a href="post-fullwidth.html"><img class="img-responsive" src="images/blog/post-3.jpg" alt="" /></a>
-                        </div>
-                        <div class="blog-content">
+                        <div class="blog-content" style="margin-top:-60px;">
                             <h2 class="blogpost-title">
-                            <h2>Recent Posts</h2>
+                            <h2>Recent Logs</h2>
                             </h2>
-                           
-                            <p>recent posts shown here
-                           </p>
+                            <ol style="font-size:14px">
+                           {% for log in startup.log.all %}
+                                <li>
+                                    <ul>
+                                    <li>{{log.update_title}}</li>
+                                    <li>{{log.update_description|safe}}</li>
+                                    <li>{{log.date}}</li>
+                                    {% if log.sentiment == 0 %}
+                                    <li>Neutral</li>
+                                    {% elif log.sentiment == 1 %}
+                                    <li style="color:green">Positive</li>
+                                    {% else %}
+                                    <li style="color:red">Negative</li>
+                                    {% endif %}
+                                    </ul>
+                                </li>
+                                <br>
+                           {% endfor %}
+                           </ol>
                         </div>
                     </article>
                 </div>
