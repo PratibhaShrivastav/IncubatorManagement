@@ -98,18 +98,19 @@
                                         </ul>
                                     </div>
                                 </li>
-                                
+                            {% if request.user.username %}    
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Services <span class="caret"></span></a>
                                 <div class="dropdown-menu">
                                     <ul>
                                         <li><a href="{% url 'accounts:coffee'%}">Coffee</a></li>
-                                        {% if request.user.username %}
+                                        
                                         <li><a href="{% url 'Room:room_list'%}">Book Room</a></li>
-                                        {% endif %}
+                                        
                                     </ul>
                                 </div>
                             </li>
+                            {% endif %}
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Event <span class="caret"></span></a>
                                 <div class="dropdown-menu">
